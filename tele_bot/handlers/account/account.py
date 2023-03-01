@@ -1,0 +1,338 @@
+from aiogram import types
+from tele_bot.bot import dp
+from tele_bot import keyboard
+from tele_bot.base.account import NumberValid
+from aiogram.dispatcher import FSMContext
+from tele_bot.utils.anti_flod import flood_callback
+from tele_bot.base.account import Account
+from tele_bot.base.account import ClientStateGroup
+from tele_bot.middleware import _
+
+
+__all__ = (
+    "lk",
+    "back_lk",
+    "edit_number",
+    "edit_bus",
+    "edit_number_bus",
+    "edit_passenger",
+    "edit_number_passenger",
+    "edit_cargo",
+    "edit_number_cargo",
+    "add_number",
+    "add_bus",
+    "add_number_bus",
+    "add_passenger",
+    "add_number_passenger",
+    "add_cargo",
+    "add_number_cargo",
+    "del_number",
+    "del_bus",
+    "del_passenger",
+    "del_cargo",
+    "show_number",
+    "del_numbers",
+)
+
+
+@dp.callback_query_handler(text="lk")
+@dp.throttled(flood_callback, rate=1)
+async def lk(callback: types.CallbackQuery):
+    await callback.message.edit_text(
+        text=_("Личный кабинет"), reply_markup=keyboard.ikb_lk()
+    )
+
+
+@dp.callback_query_handler(text="back_lk")
+@dp.throttled(flood_callback, rate=1)
+async def back_lk(callback: types.CallbackQuery, state: FSMContext):
+    await state.finish()
+    await callback.message.edit_text(
+        text=_("Личный кабинет"), reply_markup=keyboard.ikb_lk()
+    )
+
+
+@dp.callback_query_handler(text="edit_number")
+@dp.throttled(flood_callback, rate=1)
+async def edit_number(callback: types.CallbackQuery):
+    user_id = callback.from_user.id
+    account = Account(user_id)
+    await account.edit_number()
+    await callback.message.edit_text(
+        text=account.response, reply_markup=account.keyboard()
+    )
+
+
+@dp.callback_query_handler(text="edit_bus")
+@dp.throttled(flood_callback, rate=1)
+async def edit_bus(callback: types.CallbackQuery):
+    user_id = callback.from_user.id
+    account = Account(user_id)
+    if await account.edit_bus():
+        await callback.message.edit_text(
+            text=account.response,
+        )
+    else:
+        await callback.message.edit_text(
+            text=account.response, reply_markup=account.keyboard()
+        )
+
+
+@dp.message_handler(state=ClientStateGroup.edit_bus_number)
+async def edit_number_bus(message: types.Message, state: FSMContext):
+    user_id = message.from_user.id
+    await state.update_data({"number": message.text})
+    num = (await state.get_data("number"))["number"]
+    number = NumberValid(num, state, "bus_number", user_id)
+    if number.is_valid():
+        await number.save()
+        await message.answer(
+            text=_("Номер успешно изменен"), reply_markup=keyboard.ikb_lk_back()
+        )
+    else:
+        await message.answer(
+            text=number.response,
+        )
+
+
+@dp.callback_query_handler(text="edit_passenger")
+@dp.throttled(flood_callback, rate=1)
+async def edit_passenger(callback: types.CallbackQuery):
+    user_id = callback.from_user.id
+    account = Account(user_id)
+    if await account.edit_passenger():
+        await callback.message.edit_text(
+            text=account.response,
+        )
+    else:
+        await callback.message.edit_text(
+            text=account.response, reply_markup=account.keyboard()
+        )
+
+
+@dp.message_handler(state=ClientStateGroup.edit_passenger_number)
+async def edit_number_passenger(message: types.Message, state: FSMContext):
+    user_id = message.from_user.id
+    await state.update_data({"number": message.text})
+    num = (await state.get_data("number"))["number"]
+    number = NumberValid(num, state, "passenger_number", user_id)
+    if number.is_valid():
+        await number.save()
+        await message.answer(
+            text=_("Номер успешно изменен"), reply_markup=keyboard.ikb_lk_back()
+        )
+    else:
+        await message.answer(
+            text=number.response,
+        )
+
+
+@dp.callback_query_handler(text="edit_cargo")
+@dp.throttled(flood_callback, rate=1)
+async def edit_cargo(callback: types.CallbackQuery):
+    user_id = callback.from_user.id
+    account = Account(user_id)
+    if await account.edit_cargo():
+        await callback.message.edit_text(
+            text=account.response,
+        )
+    else:
+        await callback.message.edit_text(
+            text=account.response, reply_markup=account.keyboard()
+        )
+
+
+@dp.message_handler(state=ClientStateGroup.edit_cargo_number)
+async def edit_number_cargo(message: types.Message, state: FSMContext):
+    user_id = message.from_user.id
+    await state.update_data({"number": message.text})
+    num = (await state.get_data("number"))["number"]
+    number = NumberValid(num, state, "cargo_number", user_id)
+    if number.is_valid():
+        await number.save()
+        await message.answer(
+            text=_("Номер успешно изменен"), reply_markup=keyboard.ikb_lk_back()
+        )
+    else:
+        await message.answer(
+            text=number.response,
+        )
+
+
+@dp.callback_query_handler(text="add_number")
+@dp.throttled(flood_callback, rate=1)
+async def add_number(callback: types.CallbackQuery):
+    user_id = callback.from_user.id
+    account = Account(user_id)
+    await account.add_number()
+    await callback.message.edit_text(
+        text=account.response, reply_markup=account.keyboard()
+    )
+
+
+@dp.callback_query_handler(text="add_bus")
+@dp.throttled(flood_callback, rate=1)
+async def add_bus(callback: types.CallbackQuery):
+    user_id = callback.from_user.id
+    account = Account(user_id)
+    if await account.add_bus():
+        await callback.message.edit_text(
+            text=account.response,
+        )
+    else:
+        await callback.message.edit_text(
+            text=account.response, reply_markup=account.keyboard()
+        )
+
+
+@dp.message_handler(state=ClientStateGroup.add_bus_number)
+async def add_number_bus(message: types.Message, state: FSMContext):
+    user_id = message.from_user.id
+    await state.update_data({"number": message.text})
+    num = (await state.get_data("number"))["number"]
+    number = NumberValid(num, state, "bus_number", user_id)
+    if number.is_valid():
+        await number.save()
+        await message.answer(
+            text=_("Теперь вы отслеживаете автобус с номером: '{}' ✅").format(number),
+            reply_markup=keyboard.ikb_lk_back(),
+        )
+    else:
+        await message.answer(
+            text=number.response,
+        )
+
+
+@dp.callback_query_handler(text="add_passenger")
+@dp.throttled(flood_callback, rate=1)
+async def add_passenger(callback: types.CallbackQuery):
+    user_id = callback.from_user.id
+    account = Account(user_id)
+    if await account.add_passenger():
+        await callback.message.edit_text(
+            text=account.response,
+        )
+    else:
+        await callback.message.edit_text(
+            text=account.response, reply_markup=account.keyboard()
+        )
+
+
+@dp.message_handler(state=ClientStateGroup.add_passenger_number)
+async def add_number_passenger(message: types.Message, state: FSMContext):
+    user_id = message.from_user.id
+    await state.update_data({"number": message.text})
+    num = (await state.get_data("number"))["number"]
+    number = NumberValid(num, state, "passenger_number", user_id)
+    if number.is_valid():
+        await number.save()
+        await message.answer(
+            text=_("Теперь вы отслеживаете авто с номером: '{}' ✅").format(number),
+            reply_markup=keyboard.ikb_lk_back(),
+        )
+    else:
+        await message.answer(
+            text=number.response,
+        )
+
+
+@dp.callback_query_handler(text="add_cargo")
+@dp.throttled(flood_callback, rate=1)
+async def add_cargo(callback: types.CallbackQuery):
+    user_id = callback.from_user.id
+    account = Account(user_id)
+    if await account.add_cargo():
+        await callback.message.edit_text(
+            text=account.response,
+        )
+    else:
+        await callback.message.edit_text(
+            text=account.response, reply_markup=account.keyboard()
+        )
+
+
+@dp.message_handler(state=ClientStateGroup.add_cargo_number)
+async def add_number_cargo(message: types.Message, state: FSMContext):
+    user_id = message.from_user.id
+    await state.update_data({"number": message.text})
+    num = (await state.get_data("number"))["number"]
+    number = NumberValid(num, state, "cargo_number", user_id)
+    if number.is_valid():
+        await number.save()
+        await message.answer(
+            text=_("Теперь вы отслеживаете грузовую с номером: '{}' ✅").format(number),
+            reply_markup=keyboard.ikb_lk_back(),
+        )
+    else:
+        await message.answer(
+            text=number.response,
+        )
+
+
+@dp.callback_query_handler(text="del_number")
+@dp.throttled(flood_callback, rate=1)
+async def del_number(callback: types.CallbackQuery):
+    user_id = callback.from_user.id
+    account = Account(user_id)
+    await account.del_number()
+    await callback.message.edit_text(
+        text=account.response, reply_markup=account.keyboard()
+    )
+
+
+@dp.callback_query_handler(text="del_bus")
+@dp.throttled(flood_callback, rate=1)
+async def del_bus(callback: types.CallbackQuery):
+    user_id = callback.from_user.id
+    account = Account(user_id)
+    await account.del_bus()
+    await callback.message.edit_text(
+        text=account.response, reply_markup=account.keyboard()
+    )
+    return account.numbers
+
+
+@dp.callback_query_handler(text="del_passenger")
+@dp.throttled(flood_callback, rate=1)
+async def del_passenger(callback: types.CallbackQuery):
+    user_id = callback.from_user.id
+    account = Account(user_id)
+    await account.del_passenger()
+    await callback.message.edit_text(
+        text=account.response, reply_markup=account.keyboard()
+    )
+    return account.numbers
+
+
+@dp.callback_query_handler(text="del_cargo")
+@dp.throttled(flood_callback, rate=1)
+async def del_cargo(callback: types.CallbackQuery):
+    user_id = callback.from_user.id
+    account = Account(user_id)
+    await account.del_cargo()
+    await callback.message.edit_text(
+        text=account.response, reply_markup=account.keyboard()
+    )
+    return account.numbers
+
+
+@dp.callback_query_handler(text="show_number")
+@dp.throttled(flood_callback, rate=1)
+async def show_number(callback: types.CallbackQuery):
+    user_id = callback.from_user.id
+    account = Account(user_id)
+    await account.show_number()
+    await callback.message.edit_text(
+        text=account.response, reply_markup=account.keyboard(), parse_mode="html"
+    )
+
+
+@dp.callback_query_handler(text="del_numbers")
+@dp.throttled(flood_callback, rate=1)
+async def del_numbers(callback: types.CallbackQuery):
+    user_id = callback.from_user.id
+    account = Account(user_id)
+    await account.del_numbers()
+    await callback.message.edit_text(
+        text=account.response, reply_markup=account.keyboard()
+    )

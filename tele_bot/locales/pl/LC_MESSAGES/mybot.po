@@ -1,0 +1,1106 @@
+# Polish translations for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-02-28 18:33+0300\n"
+"PO-Revision-Date: 2023-02-27 17:14+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: pl\n"
+"Language-Team: pl <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && "
+"(n%100<10 || n%100>=20) ? 1 : 2)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: tele_bot/base/account.py:46 tele_bot/base/account.py:82
+#: tele_bot/base/account.py:87 tele_bot/base/account.py:123
+#: tele_bot/base/monitoring.py:63
+msgid "Выберите нужный транспорт"
+msgstr "Wybierz odpowiedni środek transportu"
+
+#: tele_bot/base/account.py:49 tele_bot/base/account.py:126
+#: tele_bot/base/account.py:178 tele_bot/base/account.py:188
+#: tele_bot/base/monitoring.py:65 tele_bot/base/monitoring.py:68
+#: tele_bot/base/parser.py:84
+msgid "Вы не отслеживаете ни один вид транспорта"
+msgstr "Nie śledisz żadnego środku transportu"
+
+#: tele_bot/base/account.py:55 tele_bot/base/account.py:93
+msgid "Введите номер автобуса"
+msgstr "Wpisz numer autobusu"
+
+#: tele_bot/base/account.py:57 tele_bot/base/account.py:137
+msgid "За вами нет закрепленного автобуса"
+msgstr "Za tobą nie ma zarejestrowanego autobusu"
+
+#: tele_bot/base/account.py:64 tele_bot/base/account.py:103
+msgid "Введите номер авто"
+msgstr "Wpisz numer samochodu"
+
+#: tele_bot/base/account.py:66 tele_bot/base/account.py:148
+msgid "За вами нет закрепленного авто"
+msgstr "Za tobą nie ma zarejestrowanego samochodu"
+
+#: tele_bot/base/account.py:73
+msgid "Введите номер грузовой"
+msgstr "Wpisz numer ciężarówki"
+
+#: tele_bot/base/account.py:75 tele_bot/base/account.py:159
+msgid "За вами нет закрепленного грузового транспорта"
+msgstr "Za tobą nie ma zarejestrowanej ciężarówki"
+
+#: tele_bot/base/account.py:96
+msgid "За вами закреплен автобус с номером '{}'"
+msgstr "Za tobą został zarejestrowany autobus z numerem '{}'"
+
+#: tele_bot/base/account.py:106
+msgid "За вами закреплено авто с номером '{}'"
+msgstr "Za tobą został zarejestrowany samochód z numerem '{}'"
+
+#: tele_bot/base/account.py:113
+msgid "Введите номер грузового транспорта"
+msgstr "Wpisz numer ciężarówki"
+
+#: tele_bot/base/account.py:116
+msgid "За вами закреплен грузовой транспорт с номером '{}'"
+msgstr "Za tobą została zarejestrowana ciężarówka z numerem '{}'"
+
+#: tele_bot/base/account.py:135
+msgid "Автобус с номером '{}' удален"
+msgstr "Autobus o numerze '{}' został usunięty"
+
+#: tele_bot/base/account.py:146
+msgid "Легковая с номером '{}' удалена"
+msgstr "Samochód o numerze '{}' został usunięty"
+
+#: tele_bot/base/account.py:157
+msgid "Грузовая с номером '{}' удалена"
+msgstr "Ciężarówka o numerze '{}' została usunięta"
+
+#: tele_bot/base/account.py:165
+msgid "Не отслеживается"
+msgstr "Brak śledzenia"
+
+#: tele_bot/base/account.py:168
+msgid ""
+"Закрепленный за вами транспорт:\n"
+"<b>Автобус:</b> {bus_number} 🚌\n"
+"<b>Легковая:</b> {passenger_number} 🚘\n"
+"<b>Грузовая:</b> {cargo_number} 🚛"
+msgstr ""
+"Zarejestrowany za tobą transport:\n"
+"<b>Autobus:</b> {bus_number} 🚌\n"
+"<b>Samochód:</b> {passenger_number} 🚘\n"
+"<b>Ciężarówka:</b> {cargo_number} 🚛"
+
+#: tele_bot/base/account.py:186
+msgid "Весь отслеживаемый транспорт успешно удален"
+msgstr "Wszystkie śledzone środki transportu zostały usunięte"
+
+#: tele_bot/base/account.py:219
+msgid ""
+"Недопустимый формат, проверьте правильность введенного номера и повторите"
+" попытку"
+msgstr ""
+"Nieprawidłowy format, sprawdź prawidłowosć wpisanego numeru i spróbuj "
+"ponownie"
+
+#: tele_bot/base/monitoring.py:36
+msgid "Автобус  {bus_number}  🚌"
+msgstr "Autobus  {bus_number}  🚌"
+
+#: tele_bot/base/monitoring.py:42
+msgid "Легковая  {passenger_number}  🚘"
+msgstr "Samochód  {passenger_number}  🚘"
+
+#: tele_bot/base/monitoring.py:48
+msgid "Грузовая  {cargo_number}  🚛"
+msgstr "Ciężarówka  {cargo_number}  🚛"
+
+#: tele_bot/base/monitoring.py:54 tele_bot/keyboard/base_keyboard/base.py:42
+#: tele_bot/keyboard/base_keyboard/base.py:52
+#: tele_bot/keyboard/base_keyboard/base.py:61
+#: tele_bot/keyboard/base_keyboard/base.py:70
+#: tele_bot/keyboard/base_keyboard/base.py:76
+#: tele_bot/keyboard/base_keyboard/base.py:83
+#: tele_bot/keyboard/base_keyboard/base.py:101
+#: tele_bot/keyboard/base_keyboard/base.py:112
+#: tele_bot/keyboard/base_keyboard/base.py:124
+#: tele_bot/keyboard/base_keyboard/base.py:137
+#: tele_bot/keyboard/base_keyboard/base.py:145
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:17
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:27
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:37
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:46
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:17
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:27
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:37
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:46
+#: tele_bot/keyboard/brest_keyboard/brest.py:17
+#: tele_bot/keyboard/brest_keyboard/brest.py:27
+#: tele_bot/keyboard/brest_keyboard/brest.py:37
+#: tele_bot/keyboard/brest_keyboard/brest.py:46
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:17
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:27
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:37
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:46
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:17
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:27
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:37
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:46
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:17
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:27
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:37
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:46
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:19
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:57
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:17
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:27
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:37
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:46
+msgid "Назад ↩️"
+msgstr "Wróć ↩️"
+
+#: tele_bot/base/monitoring.py:72
+msgid "Уже включен мониторинг для транспорта с номером '{}'"
+msgstr "Już włączony monitoring dla transportu z numerem '{}'"
+
+#: tele_bot/base/monitoring.py:87
+msgid "Выберите частоту уведомлений:"
+msgstr "Wybierz częstotliwość powiadimień"
+
+#: tele_bot/base/monitoring.py:94
+msgid ""
+"Параметры мониторинга:\n"
+"<b>Номер:</b> {number}\n"
+"<b>Вид транспорта:</b> {data}\n"
+"<b>Частота уведомлений:</b> {intensity}"
+msgstr ""
+"Parametry monitoringu:\n"
+"<b>Numer:</b> {number}\n"
+"<b>Rodzaj transportu:</b> {data}\n"
+"<b>Częstotliwość powiadomień:</b> {intensity}"
+
+#: tele_bot/base/monitoring.py:177
+msgid ""
+"✅ Мониторинг подключен\n"
+"<b>Номер:</b> {number}\n"
+"<b>Пункт пропуска:</b> {checkpoint}\n"
+"<b>Периодичность:</b> {intensity}\n"
+"<b>Текущее место в очереди: </b> {place}"
+msgstr ""
+"✅ Monitoring podłączony\n"
+"<b>Numer:</b> {number}\n"
+"<b>Przejście graniczne:</b> {checkpoint}\n"
+"<b>Częstotliwość:</b> {intensity}\n"
+"<b>Aktualne miejsce w kolejce: </b> {place}"
+
+#: tele_bot/base/monitoring.py:191
+msgid ""
+"❌ Транспорт с номером '{}' не зарегистрирован ни в одной зоне "
+"ожидания,проверьте правильность введенного номера или повторите попытку "
+"через несколько минут"
+msgstr ""
+"❌ Transport o numerze '{}' nie zarejestowany w zonieoczekiwania, sprawdź "
+"prawidłowość wpisanego numeru albo sprobuj ponownie przez kilka minut"
+
+#: tele_bot/base/monitoring.py:196
+msgid ""
+"Транспорт имеет статус '{}'\n"
+"Мониторинг не может быть подключен"
+msgstr ""
+"Transport ma status '{}'\n"
+"Monitorowanie nie może być podłączone"
+
+#: tele_bot/base/monitoring.py:206
+msgid "Мониторинг для транспорта с номером '{}' был удален"
+msgstr "Monitoring dla transportu o numerze '{}' został usunięty"
+
+#: tele_bot/base/monitoring.py:208
+msgid "Вы не подключали услугу мониторинга"
+msgstr "Nie podłączyłeś uslugi monitoringu"
+
+#: tele_bot/base/parser.py:53
+msgid ""
+"По состоянию на {}:\n"
+"Очереди нет"
+msgstr ""
+"Na czas {}:\n"
+"Kolejki nie ma"
+
+#: tele_bot/base/parser.py:56 tele_bot/base/parser.py:105
+#: tele_bot/base/parser.py:128 tele_bot/base/parser.py:129
+msgid "Информация недоступна в данное время"
+msgstr "W danym czasie informacja niedostępna"
+
+#: tele_bot/base/parser.py:68
+msgid ""
+"По состоянию на {time}:\n"
+"Ваше авто {place} в очереди"
+msgstr ""
+"Na czas {time}:\n"
+"Twój transport {place} w kolejce"
+
+#: tele_bot/base/parser.py:72
+msgid ""
+"Вас вызвали в пункт пропуска, время вызова: {time}\n"
+"Дата: {data}"
+msgstr ""
+"Twój transport został wyzwany do granicy, czas wyzwania: {time}\n"
+"Data: {data}"
+
+#: tele_bot/base/parser.py:80
+msgid "Вы не состоите в очереди"
+msgstr "Twój transport nie jest w kolejce"
+
+#: tele_bot/base/parser.py:82
+msgid "Вы не привязали номер авто к своему аккаунту"
+msgstr "Nie zarejestrowałeś numer transportu do swojego konta"
+
+#: tele_bot/base/parser.py:87 tele_bot/base/parser.py:103
+msgid ""
+"По состоянию на {}:\n"
+"Длинна очереди зоны ожидания - 0"
+msgstr ""
+"Na czas {}:\n"
+"Długość kolejki w zonie oczekiwania- 0"
+
+#: tele_bot/base/parser.py:98
+msgid ""
+"По состоянию на {time}:\n"
+"Длинна очереди зоны ожидания - {queue}"
+msgstr ""
+"Na czas{time}:\n"
+"Długość kolejki w zonie oczekiwania - {queue}"
+
+#: tele_bot/base/parser.py:121
+msgid ""
+"По состоянию на {time}:\n"
+"Пропущено за сутки - {promotion}"
+msgstr ""
+"Na czas {time}:\n"
+"Wpuszczono w ciągu doby - {promotion}"
+
+#: tele_bot/base/parser.py:124
+msgid ""
+"По состоянию на {time}:\n"
+"Пропущено за час - {promotion}"
+msgstr ""
+"Na czas{time}:\n"
+"Wpuszczono za godzinę - {promotion}"
+
+#: tele_bot/base/template.py:56
+msgid ""
+"Здесь ты можешь узнать информацию об очереди на границе в зонах "
+"ожидания(ЗО)"
+msgstr "Tutaj możesz znaleźć informację o kolejce w zonach oczekiwania(ZO)"
+
+#: tele_bot/base/template.py:59
+msgid ""
+"Бот списывает информацию с официально сайта рб - "
+"<i>https://mon.declarant.by/</i> и неявляется официальным, а лишь "
+"любительским.Задача данного бота - отслеживать очередь зоны ожидания на "
+"основных пунктах пропуска РБ, и сообщать информацию о состоянии очереди "
+"пользователю.Информацию можно получить по всем доступным для пересечения "
+"границы видом транспорта. Бот позволяет сохранять номера ваших т/с и "
+"использовать их в будущем, без необходимости постоянно вводить данные при"
+" проверке.У каждого пользователя имеется свой личный кабинет, где он сам "
+"управляет своим аккаунтом, в частностиномерами своих т/с.\n"
+"<b>Внимание! Информация о очереди содержит в себе транспорт из зоны "
+"ожидания без учета живой очереди на въезде в зону ожидания.</b>"
+msgstr ""
+"Bot bierze informację z oficjalnej strony RB - "
+"<i>https://mon.declarant.by/</i> nie jest oficjanym, a tylko amotorskim. "
+"Celem tego botu jest śledzenie kolejki w zonach oczekiwania na "
+"przejsciach granicznych RB, i inforormować o stanie kolejki użytkownikam."
+" Informację można dostac dla wszystkich rodzajuw transportu. Bot pozwala "
+"zapisywać numery twoich transportów i używać ich w przyszłości, bez "
+"konieczności wprowadzania danych. U każdego użytkownika swoje konto "
+"osobiste w którym może zarządzać numerami swoich transportów.\n"
+"<b>Uwaga! Informacja o kolejce zawiera transport z zony oczekiwania bez "
+"uwzględninia kolejki przy wjezdzie do zony oczekiwania.</b>"
+
+#: tele_bot/base/template.py:72
+msgid ""
+"\n"
+"Для отправки сообщения об ошибке, будь-то неверная информация или "
+"отсутствие ответа от бота,\n"
+"перейдите по кнопке в чат поддержки, опишите всю ситуацию(желательно "
+"приложив скриншот), укажите в каком\n"
+"именно месте у вас возникла ошибка (пункт пропуска/транспорт).\n"
+"Ваше сообщение будет рассмотрено в ближайшее время, а ошибка исправлена.\n"
+msgstr ""
+"Dla wysłania wiadomości o błędzie, czy nieprawidłowej informacji, czy "
+"brak odpowiedzi od bota,\n"
+"przejdź do czatu pomocy technicznej, opisz całą sytuację( najlepiej "
+"załączając zrzut ekranu), napisz dokładnie,\n"
+"w którym miejscu wystąpił błąd(prejscie graniczne / transport).\n"
+"Twoja wiadomość zostanie wkrótce rozpatrzona, a błąd zostanie naprawiony."
+
+#: tele_bot/base/template.py:80
+msgid ""
+"Бот сканирует зоны ожидания и ищет в них ваш транспорт, чтобы в "
+"последующем следить и сообщать пользователю об движении в очереди"
+msgstr ""
+"Bot skanuje zony oczekiwania i wyszukuje w nich twój transport, aby "
+"póżniej śledzić i informować użytkownika o ruchu w kolejce"
+
+#: tele_bot/handlers/account/account.py:42
+#: tele_bot/handlers/account/account.py:52
+msgid "Личный кабинет"
+msgstr "Konto osobiste"
+
+#: tele_bot/handlers/account/account.py:94
+#: tele_bot/handlers/account/account.py:128
+#: tele_bot/handlers/account/account.py:162
+msgid "Номер успешно изменен"
+msgstr "Numer został zmieniony"
+
+#: tele_bot/handlers/account/account.py:208
+msgid "Теперь вы отслеживаете автобус с номером: '{}' ✅"
+msgstr "Teraz śledzisz autobus z numerem: '{}' ✅"
+
+#: tele_bot/handlers/account/account.py:242
+msgid "Теперь вы отслеживаете авто с номером: '{}' ✅"
+msgstr "Teraz śledzisz samochód z numerem: '{}' ✅"
+
+#: tele_bot/handlers/account/account.py:276
+msgid "Теперь вы отслеживаете грузовую с номером: '{}' ✅"
+msgstr "Teraz śledzisz ciężaruwkę z numerem: '{}' ✅"
+
+#: tele_bot/handlers/base/base.py:34 tele_bot/handlers/base/base.py:44
+msgid "Выбери язык 👇"
+msgstr "Wybierz język 👇"
+
+#: tele_bot/handlers/base/base.py:73
+msgid "Выберите нужную границу"
+msgstr "Wybiarz granicę"
+
+#: tele_bot/handlers/base/base.py:91
+#: tele_bot/handlers/berestovitsa/berestovitsa.py:50
+#: tele_bot/handlers/brest/brest.py:47
+msgid ""
+"Страна: Польша 🇵🇱\n"
+"Выберите пункт пропуска"
+msgstr ""
+"Kraj: Polska 🇵🇱\n"
+"Wybierz przejście graniczne"
+
+#: tele_bot/handlers/base/base.py:100
+#: tele_bot/handlers/beniakoni/beniakoni.py:47
+#: tele_bot/handlers/kamenny_log/kamenny_log.py:47
+#: tele_bot/handlers/kotlovka/kotlovka.py:47
+msgid ""
+"Страна: Литва 🇱🇹\n"
+"Выберите пункт пропуска"
+msgstr ""
+"Kraj: Litwa 🇱🇹\n"
+"Wybierz przejście graniczne"
+
+#: tele_bot/handlers/base/base.py:109
+#: tele_bot/handlers/grigorovshcina/grigorovshcina.py:47
+#: tele_bot/handlers/urbany/urbany.py:48
+msgid ""
+"Страна: Латвия 🇱🇻\n"
+"Выберите пункт пропуска"
+msgstr ""
+"Kraj: Łotwa 🇱🇻\n"
+"Wybierz przejście graniczne"
+
+#: tele_bot/handlers/base/base.py:118
+msgid "Выберите границу с нужным государством"
+msgstr "Wybierz graniecę z państwem"
+
+#: tele_bot/handlers/base/base.py:127
+msgid "Главное меню"
+msgstr "Menu główne"
+
+#: tele_bot/handlers/beniakoni/beniakoni.py:38
+#: tele_bot/handlers/beniakoni/beniakoni.py:65
+#: tele_bot/handlers/beniakoni/beniakoni.py:141
+#: tele_bot/handlers/beniakoni/beniakoni.py:217
+msgid ""
+"Страна: Литва 🇱🇹\n"
+"Пункт пропуска: Бенякони"
+msgstr ""
+"Kraj: Litwa 🇱🇹\n"
+"Przejście graniczne: Bieniakoni"
+
+#: tele_bot/handlers/beniakoni/beniakoni.py:56
+msgid ""
+"Страна: Литва 🇱🇹\n"
+"Пункт пропуска: Бенякони\n"
+"Транспорт: Автобус 🚌"
+msgstr ""
+"Kraj: Litwa 🇱🇹\n"
+"Przejście graniczne: Bieniakoni\n"
+"Transport: Autobus 🚌"
+
+#: tele_bot/handlers/beniakoni/beniakoni.py:132
+msgid ""
+"Страна: Литва 🇱🇹\n"
+"Пункт пропуска: Бенякони\n"
+"Транспорт: Легковой 🚘"
+msgstr ""
+"Kraj: Litwa 🇱🇹\n"
+"Przejście graniczne: Bieniakoni\n"
+"Transport: Samochód 🚘"
+
+#: tele_bot/handlers/beniakoni/beniakoni.py:208
+msgid ""
+"Страна: Литва 🇱🇹\n"
+"Пункт пропуска: Бенякони\n"
+"Транспорт: Грузовой  🚛"
+msgstr ""
+"Kraj: Litwa 🇱🇹\n"
+"Przejście graniczne: Bieniakoni\n"
+"Transport: Ciężarówka  🚛"
+
+#: tele_bot/handlers/berestovitsa/berestovitsa.py:39
+msgid "С 10.02.2023 пункт пропуска 'Берестовица' закрыт на неопределенный срок"
+msgstr ""
+"Od 10.02.2023 Przejście graniczne 'Berestowitsa' zamknięte na "
+"nieokreślony czas"
+
+#: tele_bot/handlers/berestovitsa/berestovitsa.py:59
+msgid ""
+"Страна: Польша 🇵🇱\n"
+"Пункт пропуска: Берестовица\n"
+"Транспорт: Автобус 🚌"
+msgstr ""
+"Kraj: Polska 🇵🇱\n"
+"Przejście graniczne: Berestowica\n"
+"Transport: Autobus 🚌"
+
+#: tele_bot/handlers/berestovitsa/berestovitsa.py:68
+#: tele_bot/handlers/berestovitsa/berestovitsa.py:144
+#: tele_bot/handlers/berestovitsa/berestovitsa.py:220
+msgid ""
+"Страна: Польша 🇵🇱\n"
+"Пункт пропуска: Берестовица"
+msgstr ""
+"Kraj: Polska 🇵🇱\n"
+"Przejście graniczne: Berestowica"
+
+#: tele_bot/handlers/berestovitsa/berestovitsa.py:135
+msgid ""
+"Страна: Польша 🇵🇱\n"
+"Пункт пропуска: Берестовица\n"
+"Транспорт: Легковой 🚘"
+msgstr ""
+"Kraj: Polska 🇵🇱\n"
+"Przejście graniczne: Berestowica\n"
+"Transport: Samochód 🚘"
+
+#: tele_bot/handlers/berestovitsa/berestovitsa.py:211
+msgid ""
+"Страна: Польша 🇵🇱\n"
+"Пункт пропуска: Берестовица\n"
+"Транспорт: Грузовой  🚛"
+msgstr ""
+"Kraj: Polska 🇵🇱\n"
+"Przejście graniczne: Berestowica\n"
+"Transport: Ciężarówka  🚛"
+
+#: tele_bot/handlers/brest/brest.py:38 tele_bot/handlers/brest/brest.py:65
+#: tele_bot/handlers/brest/brest.py:141 tele_bot/handlers/brest/brest.py:217
+msgid ""
+"Страна: Польша 🇵🇱\n"
+"Пункт пропуска: Брест"
+msgstr ""
+"Kraj: Polska 🇵🇱\n"
+"Przejście graniczne: Brest"
+
+#: tele_bot/handlers/brest/brest.py:56
+msgid ""
+"Страна: Польша 🇵🇱\n"
+"Пункт пропуска: Брест\n"
+"Транспорт: Автобус 🚌"
+msgstr ""
+"Kraj: Polska 🇵🇱\n"
+"Przejście graniczne: Brest\n"
+"Transport: Autobus 🚌"
+
+#: tele_bot/handlers/brest/brest.py:132
+msgid ""
+"Страна: Польша 🇵🇱\n"
+"Пункт пропуска: Брест\n"
+"Транспорт: Легковой 🚘"
+msgstr ""
+"Kraj: Polska 🇵🇱\n"
+"Przejście graniczne: Brest\n"
+"Transport: Samochód 🚘"
+
+#: tele_bot/handlers/brest/brest.py:208
+msgid ""
+"Страна: Польша 🇵🇱\n"
+"Пункт пропуска: Брест\n"
+"Транспорт: Грузовой  🚛"
+msgstr ""
+"Kraj: Polska 🇵🇱\n"
+"Przejście graniczne: Brest\n"
+"Transport: Ciężarówka  🚛"
+
+#: tele_bot/handlers/checkpoint_info/checkpoint_info.py:24
+msgid ""
+"<b>Адрес: </b><i>Гродненская область, Вороновский район, деревня "
+"Бенякони</i>\n"
+"<b>Телефон: </b><i>+375 (33) 654-22-04, +375 (15) 944-60-30 </i>"
+msgstr ""
+"<b>Adres: </b><i>Obwód Grodzeński, Woronowski rejon, wieś Bieniakoni</i>\n"
+"<b>Numer telefonu: </b><i>+375 (33) 654-22-04, +375 (15) 944-60-30 </i>"
+
+#: tele_bot/handlers/checkpoint_info/checkpoint_info.py:35
+msgid ""
+"<b>Адрес: </b><i>Гродненская обл., Берестовицкий р-н, ГП Пограничный (ПП "
+"Берестов. — Бобровники)</i>\n"
+"<b>Телефон: </b><i>+375 (33) 654-22-88,+375 (33) 654-22-15</i>"
+msgstr ""
+"<b>Adres: </b><i>Obwód Grodzeński, Berestowicki rejon, Pogranicznyj (PP "
+"Berestowica — Bobrowniki)</i>\n"
+"<b>Numer telefonu: </b><i>+375 (33) 654-22-88,+375 (33) 654-22-15</i>"
+
+#: tele_bot/handlers/checkpoint_info/checkpoint_info.py:46
+msgid ""
+"<b>Адрес: </b><i>Брест, Варшавское шоссе, 1</i>\n"
+"<b>Телефон: </b><i>+375(29) 155-56-44, +375(33) 686-06-86</i>"
+msgstr ""
+"<b>Adres: </b><i>Brest, Warszawskoje szose, 1</i>\n"
+"<b>Numer telefonu:  </b><i>+375(29) 155-56-44, +375(33) 686-06-86</i>"
+
+#: tele_bot/handlers/checkpoint_info/checkpoint_info.py:57
+msgid ""
+"<b>Адрес: </b><i>Витебская область, Верхнедвинский район,Бигосовский "
+"сельсовет, деревня Григоровщина</i>\n"
+"<b>Телефон: </b><i>+375(29) 200-97-71</i>"
+msgstr ""
+"<b>Adres: </b><i>Obwód Wiciebski, Werchnedwinski rejon, Bigosowskij rada "
+"wiejska, wieś Grigorowszczina</i>\n"
+"<b>Numer telefonu: </b><i>+375(29) 200-97-71</i>"
+
+#: tele_bot/handlers/checkpoint_info/checkpoint_info.py:68
+msgid ""
+"<b>Адрес: </b><i>Гродненская обл., Ошмянский район, М7, 147км, 4</i>\n"
+"<b>Телефон: </b><i>+375 (1593) 49-920, +375 33 370-4265</i>"
+msgstr ""
+"<b>Adres: </b><i>Obwód Grodzeński, Oszmianski rejon, М7, 147km, 4</i>\n"
+"<b>Numer telefonu: </b><i>+375 (1593) 49-920, +375 33 370-4265</i>"
+
+#: tele_bot/handlers/checkpoint_info/checkpoint_info.py:79
+msgid ""
+"<b>Адрес: </b><i>Гродненская область, Островецкий район, Ворнянский "
+"сельсовет, деревня Котловка</i>\n"
+"<b>Телефон: </b><i>+375(15) 917-59-01</i>"
+msgstr ""
+"<b>Adres: </b><i>Obwód Grodzeński, Ostrowecki rejon, Wornianska rada "
+"miejska, wieś Kotlowka</i>\n"
+"<b>Numer telefonu: </b><i>+375(15) 917-59-01</i>"
+
+#: tele_bot/handlers/checkpoint_info/checkpoint_info.py:90
+msgid ""
+"<b>Адрес: </b><i>Витебская область, Браславский район, Межанский "
+"сельсовет, деревня Урбаны</i>\n"
+"<b>Телефон: </b><i>+375(215) 36-70-27</i>"
+msgstr ""
+"<b>Adres: </b><i>Obwód Wiciebski, Braslawski rejon, Meżańska rada "
+"miejska, wieś Urbany</i>\n"
+"<b>Телефон: </b><i>+375(215) 36-70-27</i>"
+
+#: tele_bot/handlers/grigorovshcina/grigorovshcina.py:38
+#: tele_bot/handlers/grigorovshcina/grigorovshcina.py:65
+#: tele_bot/handlers/grigorovshcina/grigorovshcina.py:142
+#: tele_bot/handlers/grigorovshcina/grigorovshcina.py:218
+msgid ""
+"Страна: Латвия 🇱🇻\n"
+"Пункт пропуска: Григоровщина"
+msgstr ""
+"Kraj: Łotwa 🇱🇻\n"
+"Przejście graniczne: Grigorowszczina"
+
+#: tele_bot/handlers/grigorovshcina/grigorovshcina.py:56
+msgid ""
+"Страна: Латвия 🇱🇻\n"
+"Пункт пропуска: Григоровщина\n"
+"Транспорт: Автобус 🚌"
+msgstr ""
+"Kraj: Łotwa 🇱🇻\n"
+"Przejście graniczne: Grigorowszczina\n"
+"Transport: Autobus 🚌"
+
+#: tele_bot/handlers/grigorovshcina/grigorovshcina.py:133
+msgid ""
+"Страна: Латвия 🇱🇻\n"
+"Пункт пропуска: Григоровщина\n"
+"Транспорт: Легковой 🚘"
+msgstr ""
+"Kraj: Łotwa 🇱🇻\n"
+"Przejście graniczne: Grigorowszczina\n"
+"Transport: Samochód 🚘"
+
+#: tele_bot/handlers/grigorovshcina/grigorovshcina.py:209
+msgid ""
+"Страна: Латвия 🇱🇻\n"
+"Пункт пропуска: Григоровщина\n"
+"Транспорт: Грузовой  🚛"
+msgstr ""
+"Kraj: Łotwa 🇱🇻\n"
+"Przejście graniczne: Grigorowszczina\n"
+"Transport: Ciężarówka  🚛"
+
+#: tele_bot/handlers/kamenny_log/kamenny_log.py:38
+#: tele_bot/handlers/kamenny_log/kamenny_log.py:65
+#: tele_bot/handlers/kamenny_log/kamenny_log.py:142
+#: tele_bot/handlers/kamenny_log/kamenny_log.py:219
+msgid ""
+"Страна: Литва 🇱🇹\n"
+"Пункт пропуска: Каменный Лог"
+msgstr ""
+"Kraj: Litwa 🇱🇹\n"
+"Przejście graniczne: Kamennyj Log"
+
+#: tele_bot/handlers/kamenny_log/kamenny_log.py:56
+msgid ""
+"Страна: Литва 🇱🇹\n"
+"Пункт пропуска: Каменный Лог\n"
+"Транспорт: Автобус 🚌"
+msgstr ""
+"Kraj: Litwa 🇱🇹\n"
+"Przejście graniczne: Kamennyj Log\n"
+"Transport: Autobus 🚌"
+
+#: tele_bot/handlers/kamenny_log/kamenny_log.py:133
+msgid ""
+"Страна: Литва 🇱🇹\n"
+"Пункт пропуска: Каменный Лог\n"
+"Транспорт: Легковой 🚘"
+msgstr ""
+"Kraj: Litwa 🇱🇹\n"
+"Przejście graniczne: Kamennyj Log\n"
+"Transport: Samochód 🚘"
+
+#: tele_bot/handlers/kamenny_log/kamenny_log.py:210
+msgid ""
+"Страна: Литва 🇱🇹\n"
+"Пункт пропуска: Каменный Лог\n"
+"Транспорт: Грузовой  🚛"
+msgstr ""
+"Kraj: Litwa 🇱🇹\n"
+"Przejście graniczne: Kamennyj Log\n"
+"Transport: Ciężarówka  🚛"
+
+#: tele_bot/handlers/kotlovka/kotlovka.py:38
+#: tele_bot/handlers/kotlovka/kotlovka.py:65
+#: tele_bot/handlers/kotlovka/kotlovka.py:141
+#: tele_bot/handlers/kotlovka/kotlovka.py:217
+msgid ""
+"Страна: Литва 🇱🇹\n"
+"Пункт пропуска: Котловка"
+msgstr ""
+"Kraj: Litwa 🇱🇹\n"
+"Przejście graniczne: Kotlowka"
+
+#: tele_bot/handlers/kotlovka/kotlovka.py:56
+msgid ""
+"Страна: Литва 🇱🇹\n"
+"Пункт пропуска: Котловка\n"
+"Транспорт: Автобус 🚌"
+msgstr ""
+"Kraj: Litwa 🇱🇹\n"
+"Przejście graniczne: Kotlowka\n"
+"Transport: Autobus 🚌"
+
+#: tele_bot/handlers/kotlovka/kotlovka.py:132
+msgid ""
+"Страна: Литва 🇱🇹\n"
+"Пункт пропуска: Котловка\n"
+"Транспорт: Легковой 🚘"
+msgstr ""
+"Kraj: Litwa 🇱🇹\n"
+"Przejście graniczne: Kotlowka\n"
+"Transport: Samochód 🚘"
+
+#: tele_bot/handlers/kotlovka/kotlovka.py:208
+msgid ""
+"Страна: Литва 🇱🇹\n"
+"Пункт пропуска: Котловка\n"
+"Транспорт: Грузовой  🚛"
+msgstr ""
+"Kraj: Litwa 🇱🇹\n"
+"Przejście graniczne: Kotlowka\n"
+"Transport: Ciężarówka  🚛"
+
+#: tele_bot/handlers/monitoring/monitiring.py:16
+msgid ""
+"Мониторинг работает неккоректно?\n"
+"/tiket - отправьте сообщение об ошибке в группу поддержки"
+msgstr ""
+"Monitoring nie działa poprawnie?\n"
+"/tiket - wiślij wiadomość do czatu pomocy"
+
+#: tele_bot/handlers/monitoring/monitiring.py:29
+#: tele_bot/handlers/monitoring/monitiring.py:39
+msgid "Меню управления мониторингом"
+msgstr "Menu zarządzania monitoringu"
+
+#: tele_bot/handlers/monitoring/monitiring.py:73
+msgid "🚌 Автобус 🚌"
+msgstr " Autobus 🚌\""
+
+#: tele_bot/handlers/monitoring/monitiring.py:85
+msgid "🚘 Легковой 🚘"
+msgstr "🚘 Samochód 🚘"
+
+#: tele_bot/handlers/monitoring/monitiring.py:97
+msgid "🚛 Грузовой 🚛"
+msgstr "🚛 Ciężarówka 🚛"
+
+#: tele_bot/handlers/urbany/urbany.py:38 tele_bot/handlers/urbany/urbany.py:66
+#: tele_bot/handlers/urbany/urbany.py:142
+#: tele_bot/handlers/urbany/urbany.py:218
+msgid ""
+"Страна: Латвия 🇱🇻\n"
+"Пункт пропуска: Урбаны"
+msgstr ""
+"Kraj: Łotwa 🇱🇻\n"
+"Przejście graniczne: Urbany"
+
+#: tele_bot/handlers/urbany/urbany.py:57
+msgid ""
+"Страна: Латвия 🇱🇻\n"
+"Пункт пропуска: Урбаны\n"
+"Транспорт: Автобус 🚌"
+msgstr ""
+"Kraj: Łotwa 🇱🇻\n"
+"Przejście graniczne: Urbany\n"
+"Transport: Autobus 🚌"
+
+#: tele_bot/handlers/urbany/urbany.py:133
+msgid ""
+"Страна: Латвия 🇱🇻\n"
+"Пункт пропуска: Урбаны\n"
+"Транспорт: Легковой 🚘"
+msgstr ""
+"Kraj: Łotwa 🇱🇻\n"
+"Przejście graniczne: Urbany\n"
+"Transport: Samochód 🚘"
+
+#: tele_bot/handlers/urbany/urbany.py:209
+msgid ""
+"Страна: Латвия 🇱🇻\n"
+"Пункт пропуска: Урбаны\n"
+"Транспорт: Грузовой  🚛"
+msgstr ""
+"Kraj: Łotwa 🇱🇻\n"
+"Przejście graniczne: Urbany\n"
+"Transport: Ciężarówka  🚛"
+
+#: tele_bot/keyboard/base_keyboard/base.py:31
+msgid "Пункты пропуска 🏢"
+msgstr "Przejście graniczne 🏢"
+
+#: tele_bot/keyboard/base_keyboard/base.py:32
+msgid "Личный кабинет 👤"
+msgstr "Konto osobiste 👤"
+
+#: tele_bot/keyboard/base_keyboard/base.py:33
+msgid "Мониторинг 🔔"
+msgstr "Monitoring 🔔"
+
+#: tele_bot/keyboard/base_keyboard/base.py:39
+msgid "Польша 🇵🇱"
+msgstr "Polska 🇵🇱"
+
+#: tele_bot/keyboard/base_keyboard/base.py:40
+msgid "Литва 🇱🇹"
+msgstr "Litwa 🇱🇹"
+
+#: tele_bot/keyboard/base_keyboard/base.py:41
+msgid "Латвия 🇱🇻"
+msgstr "Łotwa 🇱🇻"
+
+#: tele_bot/keyboard/base_keyboard/base.py:50
+msgid "Берестовица"
+msgstr "Berestowica"
+
+#: tele_bot/keyboard/base_keyboard/base.py:51
+msgid "Брест"
+msgstr "Brest"
+
+#: tele_bot/keyboard/base_keyboard/base.py:58
+msgid "Котловка"
+msgstr "Kotlowka"
+
+#: tele_bot/keyboard/base_keyboard/base.py:59
+msgid "Каменный Лог"
+msgstr "Kamenny Log"
+
+#: tele_bot/keyboard/base_keyboard/base.py:60
+msgid "Бенякони"
+msgstr "Bieniakoni"
+
+#: tele_bot/keyboard/base_keyboard/base.py:68
+msgid "Григоровщина"
+msgstr "Grigorowszczina"
+
+#: tele_bot/keyboard/base_keyboard/base.py:69
+msgid "Урбаны"
+msgstr "Urbany"
+
+#: tele_bot/keyboard/base_keyboard/base.py:82
+msgid "Чат поддержки ✉️"
+msgstr "Czat pomocy ✉️"
+
+#: tele_bot/keyboard/base_keyboard/base.py:97
+msgid "Добавить номер"
+msgstr "Dodać numer"
+
+#: tele_bot/keyboard/base_keyboard/base.py:98
+msgid "Изменить номер"
+msgstr "Zmienić numer"
+
+#: tele_bot/keyboard/base_keyboard/base.py:99
+msgid "Удалить номер"
+msgstr "Usunąć numer"
+
+#: tele_bot/keyboard/base_keyboard/base.py:100
+msgid "Отслеживаемые т/с"
+msgstr "Śledzone transporty"
+
+#: tele_bot/keyboard/base_keyboard/base.py:109
+msgid "Добавить автобус 🚌"
+msgstr "Dodać autobus 🚌"
+
+#: tele_bot/keyboard/base_keyboard/base.py:110
+msgid "Добавить легковую 🚘"
+msgstr "Dodać samochód 🚘"
+
+#: tele_bot/keyboard/base_keyboard/base.py:111
+msgid "Добавить грузовую 🚛"
+msgstr "Dodać ciężarówkę 🚛"
+
+#: tele_bot/keyboard/base_keyboard/base.py:121
+msgid "Изменить автобус 🚌"
+msgstr "Zmienić autobus 🚌"
+
+#: tele_bot/keyboard/base_keyboard/base.py:122
+msgid "Изменить легковую 🚘"
+msgstr "Zmienić samochód 🚘"
+
+#: tele_bot/keyboard/base_keyboard/base.py:123
+msgid "Изменить грузовую 🚛"
+msgstr "Zmienić ciężarówkę 🚛"
+
+#: tele_bot/keyboard/base_keyboard/base.py:133
+msgid "Удалить автобус 🚌"
+msgstr "Usunąć autobus 🚌"
+
+#: tele_bot/keyboard/base_keyboard/base.py:134
+msgid "Удалить легковую 🚘"
+msgstr "Usunąć samochód 🚘"
+
+#: tele_bot/keyboard/base_keyboard/base.py:135
+msgid "Удалить грузовую 🚛"
+msgstr "Usunąć ciężarówkę 🚛"
+
+#: tele_bot/keyboard/base_keyboard/base.py:136
+msgid "Удалить все номера"
+msgstr "Usunąć wszystkie numery"
+
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:13
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:23
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:33
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:13
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:23
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:33
+#: tele_bot/keyboard/brest_keyboard/brest.py:13
+#: tele_bot/keyboard/brest_keyboard/brest.py:23
+#: tele_bot/keyboard/brest_keyboard/brest.py:33
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:13
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:23
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:33
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:13
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:23
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:33
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:13
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:23
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:33
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:13
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:23
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:33
+msgid "Место в очереди"
+msgstr "Miejsce w kolejce"
+
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:14
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:24
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:34
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:14
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:24
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:34
+#: tele_bot/keyboard/brest_keyboard/brest.py:14
+#: tele_bot/keyboard/brest_keyboard/brest.py:24
+#: tele_bot/keyboard/brest_keyboard/brest.py:34
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:14
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:24
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:34
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:14
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:24
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:34
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:14
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:24
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:34
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:14
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:24
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:34
+msgid "Длинна очереди"
+msgstr "Długość kolejki"
+
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:15
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:25
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:35
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:15
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:25
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:35
+#: tele_bot/keyboard/brest_keyboard/brest.py:15
+#: tele_bot/keyboard/brest_keyboard/brest.py:25
+#: tele_bot/keyboard/brest_keyboard/brest.py:35
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:15
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:25
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:35
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:15
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:25
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:35
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:15
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:25
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:35
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:15
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:25
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:35
+msgid "Пропущено за час"
+msgstr "Wyzwano za godzinę"
+
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:16
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:26
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:36
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:16
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:26
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:36
+#: tele_bot/keyboard/brest_keyboard/brest.py:16
+#: tele_bot/keyboard/brest_keyboard/brest.py:26
+#: tele_bot/keyboard/brest_keyboard/brest.py:36
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:16
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:26
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:36
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:16
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:26
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:36
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:16
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:26
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:36
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:16
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:26
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:36
+msgid "Пропущено за сутки"
+msgstr "Wyzwano za dobę"
+
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:43
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:43
+#: tele_bot/keyboard/brest_keyboard/brest.py:43
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:43
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:43
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:43
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:43
+msgid "Автобус 🚌"
+msgstr "Autobus 🚌"
+
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:44
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:44
+#: tele_bot/keyboard/brest_keyboard/brest.py:44
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:44
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:44
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:44
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:44
+msgid "Легковой транспорт 🚘"
+msgstr "Samochód osobisty 🚘"
+
+#: tele_bot/keyboard/beniakoni_keyboard/beniakoni.py:45
+#: tele_bot/keyboard/berestovitsa_keyboard/berestovitsa.py:45
+#: tele_bot/keyboard/brest_keyboard/brest.py:45
+#: tele_bot/keyboard/grigorovshcina_keyboard/grigorovshcina.py:45
+#: tele_bot/keyboard/kamenny_log_keyboard/kamenny_log.py:45
+#: tele_bot/keyboard/kotlovka_keyboard/kotlovka.py:45
+#: tele_bot/keyboard/urbany_keyboard/urbany.py:45
+msgid "Грузовой транспорт 🚛"
+msgstr "Ciężarówka 🚛"
+
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:16
+msgid "Как это работает ❓"
+msgstr "Jak to dzała ❓"
+
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:17
+msgid "Подключить"
+msgstr "Podłączyć"
+
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:18
+msgid "Отключить"
+msgstr "Wyłączyć"
+
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:27
+msgid "Автобус🚌"
+msgstr "Autobus🚌"
+
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:28
+msgid "Легковой🚘"
+msgstr "Samochód"
+
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:29
+msgid "Грузовой🚛"
+msgstr "Ciężarówka🚛"
+
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:30
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:41
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:51
+msgid "Отмена ↩️"
+msgstr "Wróć ↩️"
+
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:36
+msgid "Каждую машину"
+msgstr "Co 1 samochód"
+
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:37
+msgid "Каждые 5 машин"
+msgstr "Co 5 samochodów"
+
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:38
+msgid "Каждые 10 машин"
+msgstr "Co 10 samochodów"
+
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:39
+msgid "Каждые 20 машин"
+msgstr "Co 20 samochodów"
+
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:40
+msgid "Каждые 50 машин"
+msgstr "Co 50 samochodów"
+
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:50
+msgid "Подключить мониторинг"
+msgstr "Podłączyć monitoring"
+
+#: tele_bot/keyboard/monitoring_keyboard/monitoring.py:63
+msgid "Отключить мониторинг"
+msgstr "Wyłączyć monitoring"
+
+#: tele_bot/utils/anti_flod.py:10
+msgid "Не отправляйте команды слишком часто"
+msgstr "Nie wysyłaj zbyt często"
+
+#~ msgid "Вы больше не состоите в очереди"
+#~ msgstr "Twój transport nie jest w kolejce"
+
