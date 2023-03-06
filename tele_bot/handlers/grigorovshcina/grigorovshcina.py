@@ -7,30 +7,6 @@ from tele_bot.utils.anti_flod import flood_callback
 from tele_bot.middleware import _
 
 
-__all__ = (
-    "grigorovshcina_data",
-    "back_grigorovshcina",
-    "grigorovshcina_bus",
-    "grigorovshcina_back_bus",
-    "grigorovshcina_place_in_queue_bus",
-    "grigorovshcina_queue_len_bus",
-    "grigorovshcina_an_hour_bus",
-    "grigorovshcina_an_day_bus",
-    "grigorovshcina_passenger",
-    "grigorovshcina_back_passenger",
-    "grigorovshcina_place_in_queue_passenger",
-    "grigorovshcina_queue_len_passenger",
-    "grigorovshcina_an_hour_passenger",
-    "grigorovshcina_an_day_passenger",
-    "grigorovshcina_cargo",
-    "grigorovshcina_back_cargo",
-    "grigorovshcina_place_in_queue_cargo",
-    "grigorovshcina_queue_len_cargo",
-    "grigorovshcina_an_hour_cargo",
-    "grigorovshcina_an_day_cargo",
-)
-
-
 @dp.callback_query_handler(text="grigorovshcina")
 @dp.throttled(flood_callback, rate=1)
 async def grigorovshcina_data(callback: types.CallbackQuery):
@@ -71,8 +47,8 @@ async def grigorovshcina_back_bus(callback: types.CallbackQuery):
 @dp.throttled(flood_callback, rate=1)
 async def grigorovshcina_place_in_queue_bus(callback: types.CallbackQuery):
     user_id = callback.from_user.id
-    checkpoint_info = Parser("grigorovshcina", "bus")
-    await checkpoint_info.get_place("bus_number", user_id)
+    checkpoint_info = Parser("grigorovschina", user_id=user_id, transport="bus")
+    await checkpoint_info.get_place()
     try:
         await callback.message.edit_text(
             text=checkpoint_info.response,
@@ -86,7 +62,7 @@ async def grigorovshcina_place_in_queue_bus(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="grigorovshcina_queue_len_bus")
 @dp.throttled(flood_callback, rate=1)
 async def grigorovshcina_queue_len_bus(callback: types.CallbackQuery):
-    checkpoint_info = Parser("grigorovshcina", "bus")
+    checkpoint_info = Parser("checkpoint", checkpoint="Григоровщина", transport="Bus")
     await checkpoint_info.len_queue()
     try:
         await callback.message.edit_text(
@@ -100,11 +76,11 @@ async def grigorovshcina_queue_len_bus(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="grigorovshcina_an_hour_bus")
 @dp.throttled(flood_callback, rate=1)
 async def grigorovshcina_an_hour_bus(callback: types.CallbackQuery):
-    checkpoint_info = Parser("grigorovshcina", "bus")
-    await checkpoint_info.queue_promotion()
+    checkpoint_info = Parser("stat4", transport="bus")
+    await checkpoint_info.queue_promotion_per_hour()
     try:
         await callback.message.edit_text(
-            text=checkpoint_info.promotion_per_hour,
+            text=checkpoint_info.response,
             reply_markup=keyboard.ikb_grigorovshcina_bus(),
         )
     except MessageNotModified:
@@ -114,11 +90,11 @@ async def grigorovshcina_an_hour_bus(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="grigorovshcina_an_day_bus")
 @dp.throttled(flood_callback, rate=1)
 async def grigorovshcina_an_day_bus(callback: types.CallbackQuery):
-    checkpoint_info = Parser("grigorovshcina", "bus")
-    await checkpoint_info.queue_promotion()
+    checkpoint_info = Parser("stat4", transport="bus")
+    await checkpoint_info.queue_promotion_per_day()
     try:
         await callback.message.edit_text(
-            text=checkpoint_info.promotion_per_day,
+            text=checkpoint_info.response,
             reply_markup=keyboard.ikb_grigorovshcina_bus(),
         )
     except MessageNotModified:
@@ -149,8 +125,8 @@ async def grigorovshcina_back_passenger(callback: types.CallbackQuery):
 @dp.throttled(flood_callback, rate=1)
 async def grigorovshcina_place_in_queue_passenger(callback: types.CallbackQuery):
     user_id = callback.from_user.id
-    checkpoint_info = Parser("grigorovshcina", "passenger")
-    await checkpoint_info.get_place("passenger_number", user_id)
+    checkpoint_info = Parser("grigorovschina", user_id=user_id, transport="car")
+    await checkpoint_info.get_place()
     try:
         await callback.message.edit_text(
             text=checkpoint_info.response,
@@ -164,7 +140,7 @@ async def grigorovshcina_place_in_queue_passenger(callback: types.CallbackQuery)
 @dp.callback_query_handler(text="grigorovshcina_queue_len_passenger")
 @dp.throttled(flood_callback, rate=1)
 async def grigorovshcina_queue_len_passenger(callback: types.CallbackQuery):
-    checkpoint_info = Parser("grigorovshcina", "passenger")
+    checkpoint_info = Parser("checkpoint", checkpoint="Григоровщина", transport="Car")
     await checkpoint_info.len_queue()
     try:
         await callback.message.edit_text(
@@ -178,11 +154,11 @@ async def grigorovshcina_queue_len_passenger(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="grigorovshcina_an_hour_passenger")
 @dp.throttled(flood_callback, rate=1)
 async def grigorovshcina_an_hour_passenger(callback: types.CallbackQuery):
-    checkpoint_info = Parser("grigorovshcina", "passenger")
-    await checkpoint_info.queue_promotion()
+    checkpoint_info = Parser("stat4", transport="car")
+    await checkpoint_info.queue_promotion_per_hour()
     try:
         await callback.message.edit_text(
-            text=checkpoint_info.promotion_per_hour,
+            text=checkpoint_info.response,
             reply_markup=keyboard.ikb_grigorovshcina_passenger(),
         )
     except MessageNotModified:
@@ -192,11 +168,11 @@ async def grigorovshcina_an_hour_passenger(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="grigorovshcina_an_day_passenger")
 @dp.throttled(flood_callback, rate=1)
 async def grigorovshcina_an_day_passenger(callback: types.CallbackQuery):
-    checkpoint_info = Parser("grigorovshcina", "passenger")
-    await checkpoint_info.queue_promotion()
+    checkpoint_info = Parser("stat4", transport="car")
+    await checkpoint_info.queue_promotion_per_day()
     try:
         await callback.message.edit_text(
-            text=checkpoint_info.promotion_per_day,
+            text=checkpoint_info.response,
             reply_markup=keyboard.ikb_grigorovshcina_passenger(),
         )
     except MessageNotModified:
@@ -227,8 +203,8 @@ async def grigorovshcina_back_cargo(callback: types.CallbackQuery):
 @dp.throttled(flood_callback, rate=1)
 async def grigorovshcina_place_in_queue_cargo(callback: types.CallbackQuery):
     user_id = callback.from_user.id
-    checkpoint_info = Parser("grigorovshcina", "cargo")
-    await checkpoint_info.get_place("cargo_number", user_id)
+    checkpoint_info = Parser("grigorovschina", user_id=user_id, transport="truck")
+    await checkpoint_info.get_place()
     try:
         await callback.message.edit_text(
             text=checkpoint_info.response,
@@ -242,7 +218,7 @@ async def grigorovshcina_place_in_queue_cargo(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="grigorovshcina_queue_len_cargo")
 @dp.throttled(flood_callback, rate=1)
 async def grigorovshcina_queue_len_cargo(callback: types.CallbackQuery):
-    checkpoint_info = Parser("grigorovshcina", "cargo")
+    checkpoint_info = Parser("checkpoint", checkpoint="Григоровщина", transport="Truck")
     await checkpoint_info.len_queue()
     try:
         await callback.message.edit_text(
@@ -256,11 +232,11 @@ async def grigorovshcina_queue_len_cargo(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="grigorovshcina_an_hour_cargo")
 @dp.throttled(flood_callback, rate=1)
 async def grigorovshcina_an_hour_cargo(callback: types.CallbackQuery):
-    checkpoint_info = Parser("grigorovshcina", "cargo")
-    await checkpoint_info.queue_promotion()
+    checkpoint_info = Parser("stat4", transport="truck")
+    await checkpoint_info.queue_promotion_per_hour()
     try:
         await callback.message.edit_text(
-            text=checkpoint_info.promotion_per_hour,
+            text=checkpoint_info.response,
             reply_markup=keyboard.ikb_grigorovshcina_cargo(),
         )
     except MessageNotModified:
@@ -270,11 +246,11 @@ async def grigorovshcina_an_hour_cargo(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="grigorovshcina_an_day_cargo")
 @dp.throttled(flood_callback, rate=1)
 async def grigorovshcina_an_day_cargo(callback: types.CallbackQuery):
-    checkpoint_info = Parser("grigorovshcina", "cargo")
-    await checkpoint_info.queue_promotion()
+    checkpoint_info = Parser("stat4", transport="truck")
+    await checkpoint_info.queue_promotion_per_day()
     try:
         await callback.message.edit_text(
-            text=checkpoint_info.promotion_per_day,
+            text=checkpoint_info.response,
             reply_markup=keyboard.ikb_grigorovshcina_cargo(),
         )
     except MessageNotModified:

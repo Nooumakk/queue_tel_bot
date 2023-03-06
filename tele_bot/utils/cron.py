@@ -7,7 +7,7 @@ def start_daemon():
         if _job.comment == "daemon":
             return
     job = cron.new(
-        command="/home/ubuntu/python/queue_tel_bot/.venv/bin/python /home/ubuntu/python/queue_tel_bot/tele_bot/daemon/daemon.py",
+        command="/home/ubuntu/python/queue_tel_bot/.venv/bin/python /home/ubuntu/python/queue_tel_bot/tele_bot/base/klient.py",
         comment="daemon",
     )
     job.minute.every(1)

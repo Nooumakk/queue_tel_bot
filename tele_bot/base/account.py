@@ -6,15 +6,15 @@ from tele_bot.middleware import _
 
 
 class ClientStateGroup(StatesGroup):
-    add_bus_number = State()
-    add_passenger_number = State()
-    add_cargo_number = State()
-    delete_bus_number = State()
-    delete_passenger_number = State()
-    delete_cargo_number = State()
-    edit_bus_number = State()
-    edit_passenger_number = State()
-    edit_cargo_number = State()
+    add_bus = State()
+    add_car = State()
+    add_truck = State()
+    delete_bus = State()
+    delete_car = State()
+    delete_truck = State()
+    edit_bus = State()
+    edit_car = State()
+    edit_truck = State()
 
 
 class BaseUser(ABC):
@@ -51,27 +51,27 @@ class Account(BaseUser):
 
     async def edit_bus(self):
         numbers = await self._get_numbers()
-        if numbers.bus_number != None:
+        if numbers.bus != None:
             self.response = _("Введите номер автобуса")
-            return await ClientStateGroup.edit_bus_number.set(), True
+            return await ClientStateGroup.edit_bus.set(), True
         self.response = _("За вами нет закрепленного автобуса")
         self.keyboard = keyboard.ikb_lk_back
         return False
 
     async def edit_passenger(self):
         numbers = await self._get_numbers()
-        if numbers.passenger_number != None:
+        if numbers.car != None:
             self.response = _("Введите номер авто")
-            return await ClientStateGroup.edit_passenger_number.set(), True
+            return await ClientStateGroup.edit_car.set(), True
         self.response = _("За вами нет закрепленного авто")
         self.keyboard = keyboard.ikb_lk_back
         return False
 
     async def edit_cargo(self):
         numbers = await self._get_numbers()
-        if numbers.cargo_number != None:
+        if numbers.truck != None:
             self.response = _("Введите номер грузовой")
-            return await ClientStateGroup.edit_cargo_number.set(), True
+            return await ClientStateGroup.edit_truck.set(), True
         self.response = _("За вами нет закрепленного грузового транспорта")
         self.keyboard = keyboard.ikb_lk_back
         return False
@@ -89,37 +89,37 @@ class Account(BaseUser):
 
     async def add_bus(self):
         numbers = await self._get_numbers()
-        if numbers.bus_number == None:
+        if numbers.bus == None:
             self.response = _("Введите номер автобуса")
-            return await ClientStateGroup.add_bus_number.set(), True
+            return await ClientStateGroup.add_bus.set(), True
         else:
             self.response = _("За вами закреплен автобус с номером '{}'").format(
-                numbers.bus_number
+                numbers.bus
             )
             self.keyboard = keyboard.ikb_lk_back
             return False
 
     async def add_passenger(self):
         numbers = await self._get_numbers()
-        if numbers.passenger_number == None:
+        if numbers.car == None:
             self.response = _("Введите номер авто")
-            return await ClientStateGroup.add_passenger_number.set(), True
+            return await ClientStateGroup.add_car.set(), True
         else:
             self.response = _("За вами закреплено авто с номером '{}'").format(
-                numbers.passenger_number
+                numbers.car
             )
             self.keyboard = keyboard.ikb_lk_back
             return False
 
     async def add_cargo(self):
         numbers = await self._get_numbers()
-        if numbers.cargo_number == None:
+        if numbers.truck == None:
             self.response = _("Введите номер грузового транспорта")
-            return await ClientStateGroup.add_cargo_number.set(), True
+            return await ClientStateGroup.add_truck.set(), True
         else:
             self.response = _(
                 "За вами закреплен грузовой транспорт с номером '{}'"
-            ).format(numbers.cargo_number)
+            ).format(numbers.truck)
             self.keyboard = keyboard.ikb_lk_back
             return False
 
@@ -134,9 +134,9 @@ class Account(BaseUser):
 
     async def del_bus(self):
         self.numbers = await self._get_numbers()
-        if self.numbers.bus_number:
-            old_number = self.numbers.bus_number
-            await self.numbers.update_from_dict({"bus_number": None})
+        if self.numbers.bus:
+            old_number = self.numbers.bus
+            await self.numbers.update_from_dict({"bus": None})
             await self.numbers.save()
             self.response = _("Автобус с номером '{}' удален").format(old_number)
         else:
@@ -145,9 +145,9 @@ class Account(BaseUser):
 
     async def del_passenger(self):
         self.numbers = await self._get_numbers()
-        if self.numbers.passenger_number:
-            old_number = self.numbers.passenger_number
-            await self.numbers.update_from_dict({"passenger_number": None})
+        if self.numbers.car:
+            old_number = self.numbers.car
+            await self.numbers.update_from_dict({"car": None})
             await self.numbers.save()
             self.response = _("Легковая с номером '{}' удалена").format(old_number)
         else:
@@ -156,9 +156,9 @@ class Account(BaseUser):
 
     async def del_cargo(self):
         self.numbers = await self._get_numbers()
-        if self.numbers.cargo_number:
-            old_number = self.numbers.cargo_number
-            await self.numbers.update_from_dict({"cargo_number": None})
+        if self.numbers.truck:
+            old_number = self.numbers.truck
+            await self.numbers.update_from_dict({"truck": None})
             await self.numbers.save()
             self.response = _("Грузовая с номером '{}' удалена").format(old_number)
         else:
@@ -175,13 +175,13 @@ class Account(BaseUser):
             }
             self.response = _(
                 "Закрепленный за вами транспорт:\n"
-                "<b>Автобус:</b> {bus_number} 🚌\n"
-                "<b>Легковая:</b> {passenger_number} 🚘\n"
-                "<b>Грузовая:</b> {cargo_number} 🚛"
+                "<b>Автобус:</b> {bus} 🚌\n"
+                "<b>Легковая:</b> {car} 🚘\n"
+                "<b>Грузовая:</b> {truck} 🚛"
             ).format(
-                bus_number=val["bus_number"],
-                passenger_number=val["passenger_number"],
-                cargo_number=val["cargo_number"],
+                bus=val["bus"],
+                car=val["car"],
+                truck=val["truck"],
             )
         except AttributeError:
             self.response = _("Вы не отслеживаете ни один вид транспорта")

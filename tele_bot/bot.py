@@ -5,12 +5,14 @@ from tortoise import Tortoise
 from tele_bot.utils.cron import start_daemon, close_daemon
 from aiogram.contrib.fsm_storage.redis import RedisStorage2
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from tele_bot.base.monitoring import start_monitoring
 
 
 storage = RedisStorage2("localhost", 6379, db=5)
 bot = Bot(token=conf.token)
 dp = Dispatcher(bot=bot, storage=storage)
+scheduler = AsyncIOScheduler(timezone="Europe/Minsk")
 scheduler = AsyncIOScheduler(timezone="Europe/Minsk")
 scheduler.add_job(start_monitoring, trigger="interval", seconds=5, kwargs={"bot": bot})
 scheduler.start()

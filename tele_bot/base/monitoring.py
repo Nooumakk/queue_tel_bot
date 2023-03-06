@@ -1,11 +1,12 @@
 import aiofiles
 import os
+import json
+from pathlib import Path
 from aiogram import types
 from aiogram import types
 from tele_bot.db.models import Tracking, Car, Numbers, User
 from tele_bot.base.account import BaseUser
 from tele_bot.settings import conf
-from bs4 import BeautifulSoup as Bs
 from tele_bot import keyboard
 from aiogram import Bot
 from tele_bot.middleware import _
@@ -17,13 +18,28 @@ from aiogram.dispatcher import FSMContext
 class AddMonitoring(BaseUser):
     def __init__(self, user_id):
         self._user_id = user_id
+        self._model: User = None
+        self._file_paths = []
+        self._status = None
 
     async def _get_user(self):
         self._model = await User.get(telegram_id=self._user_id)
+        self.lang_code = self._model.language_code
 
     async def _get_numbers(self):
         await self._get_user()
         return await self._model.number
+
+    async def _get_path(self):
+        return [
+            file.path
+            for file in os.scandir(conf.BASE_DIR / "checkpoint")
+            if file.is_file()
+        ]
+
+    async def _get_monitoring(self):
+        await self._get_user()
+        return await self._model.monitoring
 
     async def _create_keyboard(self):
         self._buttons = []
@@ -35,24 +51,24 @@ class AddMonitoring(BaseUser):
         }
         if val:
             for num in val:
-                if num == "bus_number":
+                if num == "bus":
                     self._buttons.append(
                         types.InlineKeyboardButton(
-                            text=_("Автобус  {bus_number}  🚌").format(**val),
+                            text=_("Автобус  {bus}  🚌").format(**val),
                             callback_data="bus_monitoring",
                         )
                     )
-                elif num == "passenger_number":
+                elif num == "car":
                     self._buttons.append(
                         types.InlineKeyboardButton(
-                            text=_("Легковая  {passenger_number}  🚘").format(**val),
+                            text=_("Легковая  {car}  🚘").format(**val),
                             callback_data="passenger_monitoring",
                         )
                     )
                 else:
                     self._buttons.append(
                         types.InlineKeyboardButton(
-                            text=_("Грузовая  {cargo_number}  🚛").format(**val),
+                            text=_("Грузовая  {truck}  🚛").format(**val),
                             callback_data="cargo_monitoring",
                         )
                     )
@@ -81,22 +97,26 @@ class AddMonitoring(BaseUser):
         else:
             monitoring: Tracking = await self._model.monitoring
             self.response = _(
-                "Уже включен мониторинг для транспорта с номером '{}'"
+                _("Уже включен мониторинг для транспорта с номером '{}'")
             ).format(monitoring.number)
             self.transport = keyboard.ikb_back_monitoring()
 
     async def add_transport(self, ts_id, ts_temp, state: FSMContext):
         numbers: Numbers = await self._get_numbers()
         if ts_id == 1:
-            number = numbers.bus_number
+            number = numbers.bus
+            transport = "bus"
         elif ts_id == 2:
-            number = numbers.passenger_number
+            number = numbers.car
+            transport = "car"
         else:
-            number = numbers.cargo_number
+            number = numbers.truck
+            transport = "truck"
         async with state.proxy() as data:
-            data["ts"] = ts_id
+            data["ts_id"] = ts_id
             data["ts_tem"] = ts_temp
             data["number"] = number
+            data["transport"] = transport
         self.response = _("Выберите частоту уведомлений:")
 
     async def add_intensity(self, intensity, state: FSMContext):
@@ -109,83 +129,9 @@ class AddMonitoring(BaseUser):
             "{data}\n<b>Частота уведомлений:</b> {intensity}"
         ).format(number=number, data=data["ts_tem"], intensity=intensity)
 
-
-class RegMonitoring(BaseUser):
-    def __init__(self, user_id):
-        self._user_id = user_id
-        self._model: User = None
-        self._file_paths = []
-        self._checkpoint_ru = None
-        self._status = None
-        self._flag = False
-
-    async def _get_user(self):
-        self._model = await User.get(telegram_id=self._user_id)
-        self.lang_code = self._model.language_code
-
-    async def _get_numbers(self):
-        await self._get_user()
-        return await self._model.number
-
-    async def _get_path(self):
-        self._transport = await Car.get(id=self._ts)
-        self._file_paths = [
-            file.path + "/" + self._transport.transport.strip() + ".html"
-            for file in os.scandir(conf.BASE_DIR / "daemon" / "pages")
-        ]
-
-    async def _get_monitoring(self):
-        await self._get_user()
-        return await self._model.monitoring
-
-    async def _get_params(self, state: FSMContext):
-        async with state.proxy() as data:
-            self._ts = data["ts"]
-            self._number = data["number"]
-            self._intensity = data["intensity"]
-            return {
-                "number": data["number"],
-                "transport": data["ts"],
-                "intensity": data["intensity"],
-            }
-
-    async def _get_place_monitoring(self):
-        await self._get_path()
-        for file_path in self._file_paths:
-            async with aiofiles.open(file_path, mode="r") as file:
-                content = await file.read()
-                if content != "None":
-                    result = Bs(content, features="lxml")
-                    items = result.find("tbody")
-                    if items.text != "Отсутствуют данные":
-                        for item in items:
-                            number = item.select_one("td:nth-child(3)").text.strip()
-                            if self._number != number:
-                                continue
-                            self._status = item.select_one(
-                                "td:nth-child(6)"
-                            ).text.strip()
-                            if self._status == "Прибыл в ЗО":
-                                self._params = {
-                                    "number": self._number,
-                                    "checkpoint": file_path.split("/")[-2],
-                                    "car_id": self._ts,
-                                    "intensity": self._intensity,
-                                    "place": item.select_one(
-                                        "td:nth-child(1)"
-                                    ).text.strip(),
-                                }
-                                self._checkpoint_ru = result.select_one(
-                                    ".adress-bar > div:nth-child(1) > h2:nth-child(1)"
-                                ).text
-                                return await self._get_user(), True
-                            await self._get_user()
-                            return False
-        return False
-
     async def save(self, state):
         try:
-            self._params = await self._get_params(state)
+            await self._get_params(state)
             if await self._get_place_monitoring():
                 monitoring = await Tracking.create(**self._params)
                 self._model.monitoring = monitoring
@@ -209,11 +155,47 @@ class RegMonitoring(BaseUser):
                         "проверьте правильность введенного номера или повторите попытку через несколько минут"
                     ).format(self._number)
                     return
+                elif self._status == 3:
+                    self.response = _(
+                        "Транспорт имеет статус '{}'\nМониторинг не может быть подключен"
+                    ).format(_m("Вызван в ПП", self.lang_code))
+                else:
+                    self._status = "Аннулирован"
                 self.response = _(
                     "Транспорт имеет статус '{}'\nМониторинг не может быть подключен"
-                ).format(_m(self._status, self.lang_code))
+                ).format(_m("Аннулирован", self.lang_code))
         finally:
             await state.finish()
+
+    async def _get_params(self, state: FSMContext):
+        async with state.proxy() as data:
+            self._ts_id = data["ts_id"]
+            self._number = data["number"]
+            self._intensity = data["intensity"]
+            self._transport = data["transport"]
+
+    async def _get_place_monitoring(self):
+        for file_path in await self._get_path():
+            async with aiofiles.open(file_path, mode="r") as file:
+                res = json.loads(await file.read())
+                transport = self._transport + "LiveQueue"
+                if res[transport]:
+                    for auto in res[transport]:
+                        if self._number == auto["regnum"]:
+                            if auto["status"] == 2:
+                                self._params = {
+                                    "number": self._number,
+                                    "checkpoint": Path(file_path).name.split(".")[0],
+                                    "car_id": self._ts_id,
+                                    "intensity": self._intensity,
+                                    "place": auto["order_id"],
+                                }
+                                self._checkpoint_ru = res["info"]["name"]
+                                return await self._get_user(), True
+                            await self._get_user()
+                            self._status = int(auto["status"])
+                            return False
+        return False
 
     async def delete(self):
         monitoring: Tracking = await self._get_monitoring()
@@ -228,7 +210,6 @@ class RegMonitoring(BaseUser):
 
 class Monitoring:
     def __init__(self, model):
-        self._flag = False
         self._model: Tracking = model
 
     async def _get_all_users(self):
@@ -240,18 +221,13 @@ class Monitoring:
         self._checkpoint = user.checkpoint
         self._intensity = user.intensity
         self._place = user.place
-        self._car: Car = await user.car
+        self._car = await user.car
 
-    async def _get_html(self):
-        file_path = (
-            conf.BASE_DIR
-            / "daemon"
-            / "pages"
-            / self._checkpoint
-            / (self._car.transport.strip() + ".html")
-        )
+    async def _get_data(self):
+        file_path = conf.BASE_DIR / "checkpoint" / (self._checkpoint + ".json")
         async with aiofiles.open(file_path, mode="r") as file:
-            self._content = await file.read()
+            transport = self._car.transport + "LiveQueue"
+            self._content = json.loads(await file.read())[transport]
             if self._content:
                 return True
             return False
@@ -260,40 +236,45 @@ class Monitoring:
         if await self._get_all_users():
             for user in self._users:
                 await self._get_params(user)
-                if await self._get_html():
-                    result = Bs(self._content, features="lxml")
-                    self._items = result.find("tbody")
-                    if self._items:
-                        if self._items.text != "Отсутствуют данные":
-                            self._user: Tracking = user
-                            if await self._search_user():
-                                await self.send_message(bot)
+                if await self._get_data():
+                    self._user: Tracking = user
+                    if await self._search_user():
+                        await self.send_message(bot)
                         continue
-                continue
+                    continue
+                self._status = 0
+                await self.send_message(bot)
 
     async def _check_status(self):
-        if self._status == "Прибыл в ЗО":
+        """
+        status 0: deleted from queue
+        status 2: arriver at tge checkpoint
+        status 3: called to the checkpoint
+        status 9: transport cancelled
+
+        """
+        if self._status == 2:
             return True
 
     async def _edit_data(self):
-        if self._place != self.new_place:
+        if self._place != int(self.new_place):
             if self._place - int(self.new_place) >= self._intensity:
                 await self._user.update_from_dict({"place": self.new_place})
                 return await self._user.save(), True
 
     async def _search_user(self):
-        for item in self._items:
-            number = item.select_one("td:nth-child(3)").text.strip()
+        for auto in self._content:
+            number = auto["regnum"]
             if number != self._number:
                 continue
-            self._status = item.select_one("td:nth-child(6)").text.strip()
+            self._status = int(auto["status"])
             if await self._check_status():
-                self.new_place = item.select_one("td:nth-child(1)").text.strip()
+                self.new_place = int(auto["order_id"])
                 if await self._edit_data():
                     return True
                 return False
             return True
-        self._status = "Удален"
+        self._status = 0
         return True
 
     async def send_message(self, bot: Bot):
@@ -310,7 +291,7 @@ class Monitoring:
                 ),
             )
         else:
-            if self._status == "Вызван в ПП":
+            if self._status == 3:
                 await self._user.delete()
                 await bot.send_message(
                     text=_m("Вас вызвали в пункт пропуска", lang_code),
@@ -319,7 +300,7 @@ class Monitoring:
                         types.KeyboardButton(text=_k("Главное меню", lang_code))
                     ),
                 )
-            elif self._status == "Удален":
+            elif self._status == 0:
                 await self._user.delete()
                 await bot.send_message(
                     text=_m("Вы больше не состоите в очереди", lang_code),
@@ -328,7 +309,7 @@ class Monitoring:
                         types.KeyboardButton(text=_k("Главное меню", lang_code))
                     ),
                 )
-            elif self._status == "Аннулирован":
+            elif self._status == 9:
                 await self._user.delete()
                 await bot.send_message(
                     text=_m("Ваш транспорт аннулирован", lang_code),

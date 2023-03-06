@@ -101,7 +101,8 @@ def ikb_admin() -> InlineKeyboardMarkup:
     ikb_admin = InlineKeyboardMarkup(row_width=2)
     ikb1 = InlineKeyboardButton(text="Рассылка", callback_data="mailing")
     ikb2 = InlineKeyboardButton(text="Выдать админку", callback_data="admin_add")
-    ikb_admin.add(ikb1, ikb2)
+    ikb3 = InlineKeyboardButton(text="Назад ↩️", callback_data="back_menu")
+    ikb_admin.add(ikb1, ikb2, ikb3)
     return ikb_admin
 
 

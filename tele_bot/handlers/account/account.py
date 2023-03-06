@@ -78,12 +78,12 @@ async def edit_bus(callback: types.CallbackQuery):
         )
 
 
-@dp.message_handler(state=ClientStateGroup.edit_bus_number)
+@dp.message_handler(state=ClientStateGroup.edit_bus)
 async def edit_number_bus(message: types.Message, state: FSMContext):
     user_id = message.from_user.id
     await state.update_data({"number": message.text})
     num = (await state.get_data("number"))["number"]
-    number = NumberValid(num, state, "bus_number", user_id)
+    number = NumberValid(num, state, "bus", user_id)
     if number.is_valid():
         await number.save()
         await message.answer(
@@ -110,12 +110,12 @@ async def edit_passenger(callback: types.CallbackQuery):
         )
 
 
-@dp.message_handler(state=ClientStateGroup.edit_passenger_number)
+@dp.message_handler(state=ClientStateGroup.edit_car)
 async def edit_number_passenger(message: types.Message, state: FSMContext):
     user_id = message.from_user.id
     await state.update_data({"number": message.text})
     num = (await state.get_data("number"))["number"]
-    number = NumberValid(num, state, "passenger_number", user_id)
+    number = NumberValid(num, state, "car", user_id)
     if number.is_valid():
         await number.save()
         await message.answer(
@@ -142,12 +142,12 @@ async def edit_cargo(callback: types.CallbackQuery):
         )
 
 
-@dp.message_handler(state=ClientStateGroup.edit_cargo_number)
+@dp.message_handler(state=ClientStateGroup.edit_truck)
 async def edit_number_cargo(message: types.Message, state: FSMContext):
     user_id = message.from_user.id
     await state.update_data({"number": message.text})
     num = (await state.get_data("number"))["number"]
-    number = NumberValid(num, state, "cargo_number", user_id)
+    number = NumberValid(num, state, "truck", user_id)
     if number.is_valid():
         await number.save()
         await message.answer(
@@ -185,12 +185,12 @@ async def add_bus(callback: types.CallbackQuery):
         )
 
 
-@dp.message_handler(state=ClientStateGroup.add_bus_number)
+@dp.message_handler(state=ClientStateGroup.add_bus)
 async def add_number_bus(message: types.Message, state: FSMContext):
     user_id = message.from_user.id
     await state.update_data({"number": message.text})
     num = (await state.get_data("number"))["number"]
-    number = NumberValid(num, state, "bus_number", user_id)
+    number = NumberValid(num, state, "bus", user_id)
     if number.is_valid():
         await number.save()
         await message.answer(
@@ -218,12 +218,12 @@ async def add_passenger(callback: types.CallbackQuery):
         )
 
 
-@dp.message_handler(state=ClientStateGroup.add_passenger_number)
+@dp.message_handler(state=ClientStateGroup.add_car)
 async def add_number_passenger(message: types.Message, state: FSMContext):
     user_id = message.from_user.id
     await state.update_data({"number": message.text})
     num = (await state.get_data("number"))["number"]
-    number = NumberValid(num, state, "passenger_number", user_id)
+    number = NumberValid(num, state, "car", user_id)
     if number.is_valid():
         await number.save()
         await message.answer(
@@ -251,12 +251,12 @@ async def add_cargo(callback: types.CallbackQuery):
         )
 
 
-@dp.message_handler(state=ClientStateGroup.add_cargo_number)
+@dp.message_handler(state=ClientStateGroup.add_truck)
 async def add_number_cargo(message: types.Message, state: FSMContext):
     user_id = message.from_user.id
     await state.update_data({"number": message.text})
     num = (await state.get_data("number"))["number"]
-    number = NumberValid(num, state, "cargo_number", user_id)
+    number = NumberValid(num, state, "truck", user_id)
     if number.is_valid():
         await number.save()
         await message.answer(

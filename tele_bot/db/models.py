@@ -22,9 +22,9 @@ class User(Model):
 
 class Numbers(Model):
     id = fields.BigIntField(pk=True)
-    bus_number = fields.CharField(max_length=12, null=True)
-    passenger_number = fields.CharField(max_length=12, null=True)
-    cargo_number = fields.CharField(max_length=12, null=True)
+    bus = fields.CharField(max_length=12, null=True)
+    car = fields.CharField(max_length=12, null=True)
+    truck = fields.CharField(max_length=12, null=True)
 
     class Meta:
         table = "numbers"
@@ -41,7 +41,7 @@ class Car(Model):
 class Tracking(Model):
     id = fields.BigIntField(pk=True)
     number = fields.CharField(max_length=12)
-    checkpoint = fields.CharField(max_length=13)
+    checkpoint = fields.CharField(max_length=15)
     car = fields.ForeignKeyField("models.Car")
     intensity = fields.IntField()
     place = fields.IntField(null=True)

@@ -7,30 +7,6 @@ from tele_bot.utils.anti_flod import flood_callback
 from tele_bot.middleware import _
 
 
-__all__ = (
-    "brest_data",
-    "back_brest",
-    "brest_bus",
-    "brest_back_bus",
-    "brest_place_in_queue_bus",
-    "brest_queue_len_bus",
-    "brest_an_hour_bus",
-    "brest_an_day_bus",
-    "brest_passenger",
-    "brest_back_passenger",
-    "brest_place_in_queue_passenger",
-    "brest_queue_len_passenger",
-    "brest_an_hour_passenger",
-    "brest_an_day_passenger",
-    "brest_cargo",
-    "brest_back_cargo",
-    "brest_place_in_queue_cargo",
-    "brest_queue_len_cargo",
-    "brest_an_hour_cargo",
-    "brest_an_day_cargo",
-)
-
-
 @dp.callback_query_handler(text="brest")
 @dp.throttled(flood_callback, rate=1)
 async def brest_data(callback: types.CallbackQuery):
@@ -71,8 +47,8 @@ async def brest_back_bus(callback: types.CallbackQuery):
 @dp.throttled(flood_callback, rate=1)
 async def brest_place_in_queue_bus(callback: types.CallbackQuery):
     user_id = callback.from_user.id
-    checkpoint_info = Parser("brest", "bus")
-    await checkpoint_info.get_place("bus_number", user_id)
+    checkpoint_info = Parser("brest bts", user_id=user_id, transport="bus")
+    await checkpoint_info.get_place()
     try:
         await callback.message.edit_text(
             text=checkpoint_info.response, reply_markup=keyboard.ikb_brest_bus()
@@ -85,7 +61,7 @@ async def brest_place_in_queue_bus(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="brest_queue_len_bus")
 @dp.throttled(flood_callback, rate=1)
 async def brest_queue_len_bus(callback: types.CallbackQuery):
-    checkpoint_info = Parser("brest", "bus")
+    checkpoint_info = Parser("checkpoint", checkpoint="Брест БТС", transport="Bus")
     await checkpoint_info.len_queue()
     try:
         await callback.message.edit_text(
@@ -98,11 +74,11 @@ async def brest_queue_len_bus(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="brest_an_hour_bus")
 @dp.throttled(flood_callback, rate=1)
 async def brest_an_hour_bus(callback: types.CallbackQuery):
-    checkpoint_info = Parser("brest", "bus")
-    await checkpoint_info.queue_promotion()
+    checkpoint_info = Parser("stat8", transport="bus")
+    await checkpoint_info.queue_promotion_per_hour()
     try:
         await callback.message.edit_text(
-            text=checkpoint_info.promotion_per_hour,
+            text=checkpoint_info.response,
             reply_markup=keyboard.ikb_brest_bus(),
         )
     except MessageNotModified:
@@ -112,11 +88,11 @@ async def brest_an_hour_bus(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="brest_an_day_bus")
 @dp.throttled(flood_callback, rate=1)
 async def brest_an_day_bus(callback: types.CallbackQuery):
-    checkpoint_info = Parser("brest", "bus")
-    await checkpoint_info.queue_promotion()
+    checkpoint_info = Parser("stat8", transport="bus")
+    await checkpoint_info.queue_promotion_per_day()
     try:
         await callback.message.edit_text(
-            text=checkpoint_info.promotion_per_day,
+            text=checkpoint_info.response,
             reply_markup=keyboard.ikb_brest_bus(),
         )
     except MessageNotModified:
@@ -145,8 +121,8 @@ async def brest_back_passenger(callback: types.CallbackQuery):
 @dp.throttled(flood_callback, rate=1)
 async def brest_place_in_queue_passenger(callback: types.CallbackQuery):
     user_id = callback.from_user.id
-    checkpoint_info = Parser("brest", "passenger")
-    await checkpoint_info.get_place("passenger_number", user_id)
+    checkpoint_info = Parser("brest bts", user_id=user_id, transport="car")
+    await checkpoint_info.get_place()
     try:
         await callback.message.edit_text(
             text=checkpoint_info.response, reply_markup=keyboard.ikb_brest_passenger()
@@ -159,7 +135,7 @@ async def brest_place_in_queue_passenger(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="brest_queue_len_passenger")
 @dp.throttled(flood_callback, rate=1)
 async def brest_queue_len_passenger(callback: types.CallbackQuery):
-    checkpoint_info = Parser("brest", "passenger")
+    checkpoint_info = Parser("checkpoint", checkpoint="Брест БТС", transport="Car")
     await checkpoint_info.len_queue()
     try:
         await callback.message.edit_text(
@@ -172,11 +148,11 @@ async def brest_queue_len_passenger(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="brest_an_hour_passenger")
 @dp.throttled(flood_callback, rate=1)
 async def brest_an_hour_passenger(callback: types.CallbackQuery):
-    checkpoint_info = Parser("brest", "passenger")
-    await checkpoint_info.queue_promotion()
+    checkpoint_info = Parser("stat8", transport="car")
+    await checkpoint_info.queue_promotion_per_hour()
     try:
         await callback.message.edit_text(
-            text=checkpoint_info.promotion_per_hour,
+            text=checkpoint_info.response,
             reply_markup=keyboard.ikb_brest_passenger(),
         )
     except MessageNotModified:
@@ -186,11 +162,11 @@ async def brest_an_hour_passenger(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="brest_an_day_passenger")
 @dp.throttled(flood_callback, rate=1)
 async def brest_an_day_passenger(callback: types.CallbackQuery):
-    checkpoint_info = Parser("brest", "passenger")
-    await checkpoint_info.queue_promotion()
+    checkpoint_info = Parser("stat8", transport="car")
+    await checkpoint_info.queue_promotion_per_day()
     try:
         await callback.message.edit_text(
-            text=checkpoint_info.promotion_per_day,
+            text=checkpoint_info.response,
             reply_markup=keyboard.ikb_brest_passenger(),
         )
     except MessageNotModified:
@@ -219,8 +195,8 @@ async def brest_back_cargo(callback: types.CallbackQuery):
 @dp.throttled(flood_callback, rate=1)
 async def brest_place_in_queue_cargo(callback: types.CallbackQuery):
     user_id = callback.from_user.id
-    checkpoint_info = Parser("brest", "cargo")
-    await checkpoint_info.get_place("cargo_number", user_id)
+    checkpoint_info = Parser("brest bts", user_id=user_id, transport="truck")
+    await checkpoint_info.get_place()
     try:
         await callback.message.edit_text(
             text=checkpoint_info.response, reply_markup=keyboard.ikb_brest_cargo()
@@ -233,7 +209,7 @@ async def brest_place_in_queue_cargo(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="brest_queue_len_cargo")
 @dp.throttled(flood_callback, rate=1)
 async def brest_queue_len_cargo(callback: types.CallbackQuery):
-    checkpoint_info = Parser("brest", "cargo")
+    checkpoint_info = Parser("checkpoint", checkpoint="Брест БТС", transport="Truck")
     await checkpoint_info.len_queue()
     try:
         await callback.message.edit_text(
@@ -246,11 +222,11 @@ async def brest_queue_len_cargo(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="brest_an_hour_cargo")
 @dp.throttled(flood_callback, rate=1)
 async def brest_an_hour_cargo(callback: types.CallbackQuery):
-    checkpoint_info = Parser("brest", "cargo")
-    await checkpoint_info.queue_promotion()
+    checkpoint_info = Parser("stat8", transport="truck")
+    await checkpoint_info.queue_promotion_per_hour()
     try:
         await callback.message.edit_text(
-            text=checkpoint_info.promotion_per_hour,
+            text=checkpoint_info.response,
             reply_markup=keyboard.ikb_brest_cargo(),
         )
     except MessageNotModified:
@@ -260,11 +236,11 @@ async def brest_an_hour_cargo(callback: types.CallbackQuery):
 @dp.callback_query_handler(text="brest_an_day_cargo")
 @dp.throttled(flood_callback, rate=1)
 async def brest_an_day_cargo(callback: types.CallbackQuery):
-    checkpoint_info = Parser("brest", "cargo")
-    await checkpoint_info.queue_promotion()
+    checkpoint_info = Parser("stat8", transport="truck")
+    await checkpoint_info.queue_promotion_per_day()
     try:
         await callback.message.edit_text(
-            text=checkpoint_info.promotion_per_day,
+            text=checkpoint_info.response,
             reply_markup=keyboard.ikb_brest_cargo(),
         )
     except MessageNotModified:

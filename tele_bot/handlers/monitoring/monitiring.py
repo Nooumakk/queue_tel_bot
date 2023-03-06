@@ -6,7 +6,7 @@ from tele_bot.base.template import srart_template, monitoring_template
 from aiogram.dispatcher import FSMContext
 from aiogram.utils.exceptions import MessageNotModified
 from aiogram.dispatcher import FSMContext
-from tele_bot.base.monitoring import RegMonitoring, AddMonitoring
+from tele_bot.base.monitoring import AddMonitoring
 from tele_bot.middleware import _
 
 
@@ -160,7 +160,7 @@ async def intensity_50(callback: types.CallbackQuery, state: FSMContext):
 @dp.throttled(flood_callback, rate=1)
 async def reg_monitoring(callback: types.CallbackQuery, state: FSMContext):
     user_id = callback.from_user.id
-    monitoring = RegMonitoring(user_id)
+    monitoring = AddMonitoring(user_id)
     await monitoring.save(state)
     await callback.message.edit_text(
         text=monitoring.response,
@@ -174,7 +174,7 @@ async def reg_monitoring(callback: types.CallbackQuery, state: FSMContext):
 @dp.throttled(flood_callback, rate=1)
 async def close_monitoring(callback: types.CallbackQuery):
     user_id = callback.from_user.id
-    monitoring = RegMonitoring(user_id)
+    monitoring = AddMonitoring(user_id)
     await monitoring.delete()
     try:
         await callback.message.edit_text(
