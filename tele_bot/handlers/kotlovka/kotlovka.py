@@ -1,7 +1,6 @@
 from aiogram import types
 from tele_bot.bot import dp, bot
 from tele_bot import keyboard
-from aiogram.utils.exceptions import MessageNotModified
 from tele_bot.base.parser import Parser
 from tele_bot.utils.anti_flod import flood_callback
 from tele_bot.middleware import _
@@ -49,12 +48,10 @@ async def kotlovka_place_in_queue_bus(callback: types.CallbackQuery):
     user_id = callback.from_user.id
     checkpoint_info = Parser("kotlovka", user_id=user_id, transport="bus")
     await checkpoint_info.get_place()
-    try:
-        await callback.message.edit_text(
-            text=checkpoint_info.response, reply_markup=keyboard.ikb_kotlovka_bus()
-        )
-    except MessageNotModified:
-        await bot.answer_callback_query(callback_query_id=callback.id)
+    await callback.message.edit_text(
+        text=checkpoint_info.response, reply_markup=keyboard.ikb_kotlovka_bus()
+    )
+
     return checkpoint_info._model
 
 
@@ -63,12 +60,9 @@ async def kotlovka_place_in_queue_bus(callback: types.CallbackQuery):
 async def kotlovka_queue_len_bus(callback: types.CallbackQuery):
     checkpoint_info = Parser("checkpoint", checkpoint="Котловка", transport="Bus")
     await checkpoint_info.len_queue()
-    try:
-        await callback.message.edit_text(
-            text=checkpoint_info.response, reply_markup=keyboard.ikb_kotlovka_bus()
-        )
-    except MessageNotModified:
-        await bot.answer_callback_query(callback_query_id=callback.id)
+    await callback.message.edit_text(
+        text=checkpoint_info.response, reply_markup=keyboard.ikb_kotlovka_bus()
+    )
 
 
 @dp.callback_query_handler(text="kotlovka_an_hour_bus")
@@ -76,13 +70,10 @@ async def kotlovka_queue_len_bus(callback: types.CallbackQuery):
 async def kotlovka_an_hour_bus(callback: types.CallbackQuery):
     checkpoint_info = Parser("stat3", transport="bus")
     await checkpoint_info.queue_promotion_per_hour()
-    try:
-        await callback.message.edit_text(
-            text=checkpoint_info.response,
-            reply_markup=keyboard.ikb_kotlovka_bus(),
-        )
-    except MessageNotModified:
-        await bot.answer_callback_query(callback_query_id=callback.id)
+    await callback.message.edit_text(
+        text=checkpoint_info.response,
+        reply_markup=keyboard.ikb_kotlovka_bus(),
+    )
 
 
 @dp.callback_query_handler(text="kotlovka_an_day_bus")
@@ -90,13 +81,10 @@ async def kotlovka_an_hour_bus(callback: types.CallbackQuery):
 async def kotlovka_an_day_bus(callback: types.CallbackQuery):
     checkpoint_info = Parser("stat3", transport="bus")
     await checkpoint_info.queue_promotion_per_day()
-    try:
-        await callback.message.edit_text(
-            text=checkpoint_info.response,
-            reply_markup=keyboard.ikb_kotlovka_bus(),
-        )
-    except MessageNotModified:
-        await bot.answer_callback_query(callback_query_id=callback.id)
+    await callback.message.edit_text(
+        text=checkpoint_info.response,
+        reply_markup=keyboard.ikb_kotlovka_bus(),
+    )
 
 
 @dp.callback_query_handler(text="kotlovka_passenger")
@@ -123,13 +111,11 @@ async def kotlovka_place_in_queue_passenger(callback: types.CallbackQuery):
     user_id = callback.from_user.id
     checkpoint_info = Parser("kotlovka", user_id=user_id, transport="car")
     await checkpoint_info.get_place()
-    try:
-        await callback.message.edit_text(
-            text=checkpoint_info.response,
-            reply_markup=keyboard.ikb_kotlovka_passenger(),
-        )
-    except MessageNotModified:
-        await bot.answer_callback_query(callback_query_id=callback.id)
+    await callback.message.edit_text(
+        text=checkpoint_info.response,
+        reply_markup=keyboard.ikb_kotlovka_passenger(),
+    )
+
     return checkpoint_info._model
 
 
@@ -138,13 +124,10 @@ async def kotlovka_place_in_queue_passenger(callback: types.CallbackQuery):
 async def kotlovka_queue_len_passenger(callback: types.CallbackQuery):
     checkpoint_info = Parser("checkpoint", checkpoint="Котловка", transport="Car")
     await checkpoint_info.len_queue()
-    try:
-        await callback.message.edit_text(
-            text=checkpoint_info.response,
-            reply_markup=keyboard.ikb_kotlovka_passenger(),
-        )
-    except MessageNotModified:
-        await bot.answer_callback_query(callback_query_id=callback.id)
+    await callback.message.edit_text(
+        text=checkpoint_info.response,
+        reply_markup=keyboard.ikb_kotlovka_passenger(),
+    )
 
 
 @dp.callback_query_handler(text="kotlovka_an_hour_passenger")
@@ -152,13 +135,10 @@ async def kotlovka_queue_len_passenger(callback: types.CallbackQuery):
 async def kotlovka_an_hour_passenger(callback: types.CallbackQuery):
     checkpoint_info = Parser("stat3", transport="car")
     await checkpoint_info.queue_promotion_per_hour()
-    try:
-        await callback.message.edit_text(
-            text=checkpoint_info.response,
-            reply_markup=keyboard.ikb_kotlovka_passenger(),
-        )
-    except MessageNotModified:
-        await bot.answer_callback_query(callback_query_id=callback.id)
+    await callback.message.edit_text(
+        text=checkpoint_info.response,
+        reply_markup=keyboard.ikb_kotlovka_passenger(),
+    )
 
 
 @dp.callback_query_handler(text="kotlovka_an_day_passenger")
@@ -166,13 +146,10 @@ async def kotlovka_an_hour_passenger(callback: types.CallbackQuery):
 async def kotlovka_an_day_passenger(callback: types.CallbackQuery):
     checkpoint_info = Parser("stat3", transport="car")
     await checkpoint_info.queue_promotion_per_day()
-    try:
-        await callback.message.edit_text(
-            text=checkpoint_info.response,
-            reply_markup=keyboard.ikb_kotlovka_passenger(),
-        )
-    except MessageNotModified:
-        await bot.answer_callback_query(callback_query_id=callback.id)
+    await callback.message.edit_text(
+        text=checkpoint_info.response,
+        reply_markup=keyboard.ikb_kotlovka_passenger(),
+    )
 
 
 @dp.callback_query_handler(text="kotlovka_cargo")
@@ -199,12 +176,10 @@ async def kotlovka_place_in_queue_cargo(callback: types.CallbackQuery):
     user_id = callback.from_user.id
     checkpoint_info = Parser("kotlovka", user_id=user_id, transport="truck")
     await checkpoint_info.get_place()
-    try:
-        await callback.message.edit_text(
-            text=checkpoint_info.response, reply_markup=keyboard.ikb_kotlovka_cargo()
-        )
-    except MessageNotModified:
-        await bot.answer_callback_query(callback_query_id=callback.id)
+    await callback.message.edit_text(
+        text=checkpoint_info.response, reply_markup=keyboard.ikb_kotlovka_cargo()
+    )
+
     return checkpoint_info._model
 
 
@@ -213,12 +188,9 @@ async def kotlovka_place_in_queue_cargo(callback: types.CallbackQuery):
 async def kotlovka_queue_len_cargo(callback: types.CallbackQuery):
     checkpoint_info = Parser("checkpoint", checkpoint="Котловка", transport="Truck")
     await checkpoint_info.len_queue()
-    try:
-        await callback.message.edit_text(
-            text=checkpoint_info.response, reply_markup=keyboard.ikb_kotlovka_cargo()
-        )
-    except MessageNotModified:
-        await bot.answer_callback_query(callback_query_id=callback.id)
+    await callback.message.edit_text(
+        text=checkpoint_info.response, reply_markup=keyboard.ikb_kotlovka_cargo()
+    )
 
 
 @dp.callback_query_handler(text="kotlovka_an_hour_cargo")
@@ -226,13 +198,10 @@ async def kotlovka_queue_len_cargo(callback: types.CallbackQuery):
 async def kotlovka_an_hour_cargo(callback: types.CallbackQuery):
     checkpoint_info = Parser("stat3", transport="truck")
     await checkpoint_info.queue_promotion_per_hour()
-    try:
-        await callback.message.edit_text(
-            text=checkpoint_info.response,
-            reply_markup=keyboard.ikb_kotlovka_cargo(),
-        )
-    except MessageNotModified:
-        await bot.answer_callback_query(callback_query_id=callback.id)
+    await callback.message.edit_text(
+        text=checkpoint_info.response,
+        reply_markup=keyboard.ikb_kotlovka_cargo(),
+    )
 
 
 @dp.callback_query_handler(text="kotlovka_an_day_cargo")
@@ -240,10 +209,7 @@ async def kotlovka_an_hour_cargo(callback: types.CallbackQuery):
 async def kotlovka_an_day_cargo(callback: types.CallbackQuery):
     checkpoint_info = Parser("stat3", transport="truck")
     await checkpoint_info.queue_promotion_per_day()
-    try:
-        await callback.message.edit_text(
-            text=checkpoint_info.response,
-            reply_markup=keyboard.ikb_kotlovka_cargo(),
-        )
-    except MessageNotModified:
-        await bot.answer_callback_query(callback_query_id=callback.id)
+    await callback.message.edit_text(
+        text=checkpoint_info.response,
+        reply_markup=keyboard.ikb_kotlovka_cargo(),
+    )

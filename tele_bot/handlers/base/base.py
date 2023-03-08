@@ -1,20 +1,16 @@
 from aiogram import types
+from aiogram.utils.exceptions import MessageNotModified
 from tele_bot.utils.anti_flod import flood_commands, flood_callback
 from tele_bot import keyboard
-from tele_bot.bot import dp
+from tele_bot.bot import dp, bot
 from tele_bot.base.template import help_template, srart_template, tiket_template
 from tele_bot.middleware import _
 
 
-__all__ = (
-    "help_command",
-    "start_command",
-    "checkpoint",
-    "poland_data",
-    "lithuania_data",
-    "latvia_data",
-    "checkpoint_back",
-)
+@dp.errors_handler(exception=MessageNotModified)
+async def error(update: types.Update, exeptions: MessageNotModified):
+    await bot.answer_callback_query(callback_query_id=update.callback_query.id)
+    return True
 
 
 @dp.message_handler(commands=["help"])

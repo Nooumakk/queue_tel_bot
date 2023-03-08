@@ -4,8 +4,6 @@ from tele_bot import keyboard
 from tele_bot.utils.anti_flod import flood_callback
 from tele_bot.base.template import srart_template, monitoring_template
 from aiogram.dispatcher import FSMContext
-from aiogram.utils.exceptions import MessageNotModified
-from aiogram.dispatcher import FSMContext
 from tele_bot.base.monitoring import AddMonitoring
 from tele_bot.middleware import _
 
@@ -50,12 +48,9 @@ async def add_monitoring(callback: types.CallbackQuery):
     user_id = callback.from_user.id
     monitoring = AddMonitoring(user_id)
     await monitoring.add_monitoring()
-    try:
-        await callback.message.edit_text(
-            text=monitoring.response, reply_markup=monitoring.transport
-        )
-    except MessageNotModified:
-        await bot.answer_callback_query(callback_query_id=callback.id)
+    await callback.message.edit_text(
+        text=monitoring.response, reply_markup=monitoring.transport
+    )
 
 
 @dp.callback_query_handler(text="bus_monitoring")
@@ -176,9 +171,6 @@ async def close_monitoring(callback: types.CallbackQuery):
     user_id = callback.from_user.id
     monitoring = AddMonitoring(user_id)
     await monitoring.delete()
-    try:
-        await callback.message.edit_text(
-            text=monitoring.response, reply_markup=keyboard.ikb_monitoring()
-        )
-    except MessageNotModified:
-        await bot.answer_callback_query(callback_query_id=callback.id)
+    await callback.message.edit_text(
+        text=monitoring.response, reply_markup=keyboard.ikb_monitoring()
+    )

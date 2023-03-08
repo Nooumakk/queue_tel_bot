@@ -8,9 +8,6 @@ from aiogram.dispatcher import FSMContext
 from tortoise.exceptions import DoesNotExist
 
 
-__all__ = ("send_all", "maliing", "maliing_", "admin_add", "admin_add_")
-
-
 @dp.message_handler(commands=["admin"])
 async def send_all(message: types.Message):
     await bot.send_message(
@@ -26,7 +23,6 @@ async def maliing(callback: types.CallbackQuery):
     await callback.message.answer(
         text="Введите сообщение для рассылки, для отмены введите 'СТОП'",
     )
-    await bot.answer_callback_query(callback_query_id=callback.id)
 
 
 @dp.message_handler(state=AdminStates.text_mailing)
@@ -51,12 +47,11 @@ async def admin_add(callback: types.CallbackQuery):
         await callback.message.answer(
             text="Введите телеграм-ид пользователя, для отмены введите 'СТОП'",
         )
-        await bot.answer_callback_query(callback_query_id=callback.id)
+
     else:
         await callback.message.answer(
             text="У вас нет прав",
         )
-        await bot.answer_callback_query(callback_query_id=callback.id)
 
 
 @dp.message_handler(state=AdminStates.admin_add)

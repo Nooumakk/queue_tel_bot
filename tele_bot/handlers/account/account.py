@@ -9,32 +9,6 @@ from tele_bot.base.account import ClientStateGroup
 from tele_bot.middleware import _
 
 
-__all__ = (
-    "lk",
-    "back_lk",
-    "edit_number",
-    "edit_bus",
-    "edit_number_bus",
-    "edit_passenger",
-    "edit_number_passenger",
-    "edit_cargo",
-    "edit_number_cargo",
-    "add_number",
-    "add_bus",
-    "add_number_bus",
-    "add_passenger",
-    "add_number_passenger",
-    "add_cargo",
-    "add_number_cargo",
-    "del_number",
-    "del_bus",
-    "del_passenger",
-    "del_cargo",
-    "show_number",
-    "del_numbers",
-)
-
-
 @dp.callback_query_handler(text="lk")
 @dp.throttled(flood_callback, rate=1)
 async def lk(callback: types.CallbackQuery):

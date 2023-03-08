@@ -14,4 +14,3 @@ async def flood_commands(*args, **kwargs):
 
 async def flood_callback(*args, **kwargs):
     callback: callback_query = args[0]
-    await bot.answer_callback_query(callback_query_id=callback.id)

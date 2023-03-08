@@ -6,17 +6,6 @@ from tele_bot.utils.anti_flod import flood_commands
 from tele_bot.middleware import _
 
 
-__all__ = (
-    "beniakoni_info",
-    "berestovitsa_info",
-    "brest_info",
-    "grigorovshcina_info",
-    "kamenny_log_info",
-    "kotlovka_info",
-    "urbany_info",
-)
-
-
 @dp.message_handler(commands=["beniakoni_info"])
 @dp.throttled(flood_commands, rate=2)
 async def beniakoni_info(message: types.Message):
