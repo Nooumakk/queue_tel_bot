@@ -10,7 +10,7 @@ def start_daemon():
         command="/home/ubuntu/python/queue_tel_bot/.venv/bin/python /home/ubuntu/python/queue_tel_bot/tele_bot/base/klient.py",
         comment="daemon",
     )
-    job.minute.every(1)
+    job.minute.every(2)
     cron.write()
 
 

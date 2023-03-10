@@ -49,6 +49,27 @@ class Parser(BaseUser):
         }
         if val:
             return numbers
+    
+    async def _get_params(self, auto: dict):
+        time_edit, data_edit = (
+            auto["changed_date"].strip().split(" ")
+        )
+        if auto["status"] == 2:
+            time = datetime.today().strftime("%Y-%m-%d %H:%M")
+            self.response = _(
+                "По состоянию на {time}:\n"
+                "Ваше авто {place} в очереди"
+            ).format(time=time, place=auto["order_id"])
+        elif auto["status"] == 3:
+            self.response = _(
+                "Вас вызвали в пункт пропуска:\nВремя вызова: {time}\n"
+                "Дата: {data}"
+            ).format(time=time_edit, data=data_edit)
+        else:
+            self.response = _(
+                "Ваш транспорт аннулирован:\nВремя аннулирования: {time}\n"
+                "Дата: {data}"
+            ).format(time=time_edit, data=data_edit)
 
     async def get_place(self):
         numbers = await self._get_numbers(self.user_id)
@@ -56,37 +77,12 @@ class Parser(BaseUser):
             if numbers[self.transport]:
                 transport = self.transport + "LiveQueue"
                 async with aiofiles.open(self.file_name, "r") as file:
-                    while True:
-                        try:
-                            queue = json.loads(await file.read())[transport]
-                            break
-                        except json.JSONDecodeError:
-                            asyncio.sleep(1)
+                    queue = json.loads(await file.read())[transport]
                     if queue:
                         for auto in queue:
                             if auto["regnum"] == numbers[self.transport]:
-                                time_edit, data_edit = (
-                                    auto["changed_date"].strip().split(" ")
-                                )
-                                if auto["status"] == 2:
-                                    time = datetime.today().strftime("%Y-%m-%d %H:%M")
-                                    self.response = _(
-                                        "По состоянию на {time}:\n"
-                                        "Ваше авто {place} в очереди"
-                                    ).format(time=time, place=auto["order_id"])
-                                    break
-                                elif auto["status"] == 3:
-                                    self.response = _(
-                                        "Вас вызвали в пункт пропуска:\nВремя вызова: {time}\n"
-                                        "Дата: {data}"
-                                    ).format(time=time_edit, data=data_edit)
-                                    break
-                                else:
-                                    self.response = _(
-                                        "Ваш транспорт аннулирован:\nВремя аннулирования: {time}\n"
-                                        "Дата: {data}"
-                                    ).format(time=time_edit, data=data_edit)
-                                    break
+                                await self._get_params(auto)
+                                break
                         else:
                             self.response = _("Вы не состоите в очереди")
                     else:
