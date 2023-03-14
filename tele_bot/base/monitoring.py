@@ -13,6 +13,7 @@ from tele_bot.middleware import _
 from tele_bot.base.template import _m, _k
 from tele_bot import keyboard
 from aiogram.dispatcher import FSMContext
+from aiogram.utils.exceptions import BotBlocked
 
 
 class AddMonitoring(BaseUser):
@@ -282,42 +283,45 @@ class Monitoring:
         user_id = self._user.user.telegram_id
         lang_code = self._user.user.language_code
         kb = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        if await self._check_status():
-            await bot.send_message(
-                user_id,
-                text=_m("Ваш транспорт {} в очереди", lang_code).format(self.new_place),
-                reply_markup=kb.add(
-                    types.KeyboardButton(text=_k("Главное меню", lang_code))
-                ),
-            )
-        else:
-            if self._status == 3:
-                await self._user.delete()
+        try:
+            if await self._check_status():
                 await bot.send_message(
-                    text=_m("Вас вызвали в пункт пропуска", lang_code),
-                    chat_id=user_id,
+                    user_id,
+                    text=_m("Ваш транспорт {} в очереди", lang_code).format(self.new_place),
                     reply_markup=kb.add(
                         types.KeyboardButton(text=_k("Главное меню", lang_code))
                     ),
                 )
-            elif self._status == 0:
-                await self._user.delete()
-                await bot.send_message(
-                    text=_m("Вы больше не состоите в очереди", lang_code),
-                    chat_id=user_id,
-                    reply_markup=kb.add(
-                        types.KeyboardButton(text=_k("Главное меню", lang_code))
-                    ),
-                )
-            elif self._status == 9:
-                await self._user.delete()
-                await bot.send_message(
-                    text=_m("Ваш транспорт аннулирован", lang_code),
-                    chat_id=user_id,
-                    reply_markup=kb.add(
-                        types.KeyboardButton(text=_k("Главное меню", lang_code))
-                    ),
-                )
+            else:
+                if self._status == 3:
+                    await self._user.delete()
+                    await bot.send_message(
+                        text=_m("Вас вызвали в пункт пропуска", lang_code),
+                        chat_id=user_id,
+                        reply_markup=kb.add(
+                            types.KeyboardButton(text=_k("Главное меню", lang_code))
+                        ),
+                    )
+                elif self._status == 0:
+                    await self._user.delete()
+                    await bot.send_message(
+                        text=_m("Вы больше не состоите в очереди", lang_code),
+                        chat_id=user_id,
+                        reply_markup=kb.add(
+                            types.KeyboardButton(text=_k("Главное меню", lang_code))
+                        ),
+                    )
+                elif self._status == 9:
+                    await self._user.delete()
+                    await bot.send_message(
+                        text=_m("Ваш транспорт аннулирован", lang_code),
+                        chat_id=user_id,
+                        reply_markup=kb.add(
+                            types.KeyboardButton(text=_k("Главное меню", lang_code))
+                        ),
+                    )
+        except BotBlocked:
+            await self._user.delete()
 
 
 async def start_monitoring(bot: Bot):
