@@ -17,7 +17,7 @@ async def error(update: types.Update, exeptions: MessageNotModified):
 @dp.throttled(flood_commands, rate=2)
 async def help_command(message: types.Message):
     await message.answer(
-        text=help_template(), reply_markup=keyboard.ikb_back_help(), parse_mode="html"
+        text=help_template(), reply_markup=keyboard.ikb_tiket(), parse_mode="html"
     )
 
 

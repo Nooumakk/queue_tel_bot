@@ -2,6 +2,7 @@ import asyncio
 from tele_bot.settings import conf
 from aiogram import Bot, Dispatcher, executor
 from tortoise import Tortoise
+from tele_bot.db.db_init_car import car_init
 from tele_bot.utils.cron import start_daemon, close_daemon
 from aiogram.contrib.fsm_storage.redis import RedisStorage2
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -14,7 +15,7 @@ bot = Bot(token=conf.token)
 dp = Dispatcher(bot=bot, storage=storage)
 scheduler = AsyncIOScheduler(timezone="Europe/Minsk")
 scheduler = AsyncIOScheduler(timezone="Europe/Minsk")
-scheduler.add_job(start_monitoring, trigger="interval", seconds=5, kwargs={"bot": bot})
+scheduler.add_job(start_monitoring, trigger="interval", seconds=60, kwargs={"bot": bot})
 scheduler.start()
 
 
@@ -39,6 +40,7 @@ async def on_startapp(executor):
     await setup_middleware()
     await Tortoise.init(config=conf.DB_CONFIG)
     await Tortoise.generate_schemas()
+    await car_init()
 
 
 async def on_shotdown(executor):
